@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Platform, Text, View } from 'react-native';
-import Expo from 'expo';
+import { Platform } from 'react-native';
+import * as Font from 'expo-font';
 import MenuScreen from './src/screens/MenuScreen';
 import ContactCoordinator from './src/screens/ContactCoordinator';
 import ConvinceFriends from './src/screens/ConvinceFriends';
@@ -28,7 +28,6 @@ const MainNavigator = createStackNavigator({
 });
 
 const AppWithNav = createAppContainer(MainNavigator);
-//export default App;
 
 export default class App extends Component {
   constructor() {
@@ -38,31 +37,14 @@ export default class App extends Component {
     };
   }
   async componentWillMount() {
-    await Expo.Font.loadAsync({
+    await Font.loadAsync({
       Roboto: require('./assets/Fonts/Roboto.ttf'),
       Roboto_medium: require('./assets/Fonts/Roboto_medium.ttf'),
       Ionicons: require('./assets/Fonts/Ionicons.ttf'),
-    });
-    this.setState({ isReady: true });
+    })
+    this.setState({isReady: true})
   }
   render() {
-    /*if (!this.state.isReady) {
-      return <Expo.AppLoading />;
-    }*/
-    return <AppWithNav />;
+    return this.state.isReady ? (<AppWithNav />) : null
   }
 }
-
-/*
-export default class App extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to React Native!</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
-      </View>
-    );
-  }
-}
-*/
