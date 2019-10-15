@@ -1,5 +1,5 @@
 # Anias Notes
-
+* mockup: https://xd.adobe.com/view/0f20f974-3071-4c4b-719c-cfd1ce61bf29-7911/screen/5f213569-1e15-482a-aa29-53077c40c487/intro-2
 * Material design libraries for react-native:
 https://blog.bitsrc.io/11-react-native-component-libraries-you-should-know-in-2018-71d2a8e33312
 * react base: https://docs.nativebase.io/Components.html
