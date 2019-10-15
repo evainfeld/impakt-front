@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
     borderBottomColor:'black'
   },
   error:{
-    borderColor:'lightred',
+    borderColor:'#ff0000',
     borderBottomColor:'red'
   },
   input:{
