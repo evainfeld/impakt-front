@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Platform } from 'react-native';
 import * as Font from 'expo-font';
 import MenuScreen from './src/screens/MenuScreen';
 import ContactCoordinator from './src/screens/ContactCoordinator';
@@ -7,13 +6,6 @@ import ConvinceFriends from './src/screens/ConvinceFriends';
 import GetInvolved from './src/screens/GetInvolved';
 import NewsEvents from './src/screens/NewsEvents';
 import LocalChat from './src/screens/LocalChat';
-
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
 
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
