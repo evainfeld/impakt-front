@@ -36,7 +36,7 @@ export default class RegionPicker extends Component {
   render() {
     let greeting = (this.state.selected!=this.state.options[0]) ? (
       <Text>There are {this.state.noPeople} of us in:</Text>) : (<Text>pick your region</Text>)
-    let pickers = this.state.options.map(e => <Picker.Item style={styles.pickerItem} label={e}  value={e}/>)
+    let pickers = this.state.options.map(e => <Picker.Item key={e} style={styles.pickerItem} label={e}  value={e}/>)
     //placeholder and related attributer work on IOS only.  
     //will be USED when selectedValue undefined
     //could be removed from here currently unused       
