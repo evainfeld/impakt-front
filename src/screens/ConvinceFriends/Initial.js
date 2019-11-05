@@ -1,12 +1,12 @@
 import React from 'react';
 import { Text, Button, Alert } from 'react-native';
 import { StyleSheet } from 'react-native';
-import LinearGradient from 'components/shared/LinearGradient.js';
 
+import MainLayout from 'components/layouts/MainLayout.js'
 import colors from 'constants/colors.js';
 
 const Initial = ({ navigation: { navigate } }) => (
-  <LinearGradient>
+  <MainLayout>
     <Text style={styles.encouregment}>
       No one can talk to your friends better than YOU.
         </Text>
@@ -23,7 +23,7 @@ const Initial = ({ navigation: { navigate } }) => (
     />
     <Text style={styles.securityNote}>We do not collect your data.</Text>
     <Text style={styles.securityNote}>What you do here is between you and your friends.</Text>
-  </LinearGradient>
+  </MainLayout>
 );
 
 Initial.navigationOptions = {
@@ -37,10 +37,6 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: colors.bg1
   },
-  securityNote: {
-    textTransform: 'uppercase',
-    color: '#ffffff'
-  }
 });
 
 export default Initial;

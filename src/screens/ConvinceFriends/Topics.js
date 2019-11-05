@@ -1,7 +1,8 @@
 import React from 'react';
 import { Text, FlatList } from 'react-native';
 import { StyleSheet } from 'react-native';
-import LinearGradient from 'components/shared/LinearGradient.js';
+
+import MainLayout from 'components/layouts/MainLayout.js'
 
 import general from 'constants/general.js';
 
@@ -51,7 +52,7 @@ const Item = ({ title }) => (
 )
 
 const Topics = () => (
-  <LinearGradient>
+  <MainLayout>
     <Text style={styles.header}>
       Let's convince your friends, who value:
     </Text>
@@ -60,7 +61,7 @@ const Topics = () => (
       renderItem={({ item }) => <Item title={item.title} />}
       keyExtractor={item => item.title}
     />
-  </LinearGradient>
+  </MainLayout>
 );
 
 Topics.navigationOptions = {
