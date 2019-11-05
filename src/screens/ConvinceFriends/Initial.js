@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, Button, Alert } from 'react-native';
+import { Button, Text } from 'native-base';
 import { StyleSheet } from 'react-native';
 
 import MainLayout from 'components/layouts/MainLayout.js'
@@ -9,18 +9,16 @@ const Initial = ({ navigation: { navigate } }) => (
   <MainLayout>
     <Text style={styles.encouregment}>
       No one can talk to your friends better than YOU.
-        </Text>
+    </Text>
     <Text style={styles.encouregment}>
       You know what's important to them.
-        </Text>
+    </Text>
     <Text style={styles.encouregment}>
       Let's convince them to support our common cause TOGETHER
-        </Text>
-    <Button
-      title="Let's do it"
-      onPress={() => navigate('ConvinceFriendsTopics')}
-      color={colors.bg1}
-    />
+    </Text>
+    <Button block light full large onPress={() => navigate('ConvinceFriendsTopics')}>
+      <Text>Let's do it</Text>
+    </Button>
     <Text style={styles.securityNote}>We do not collect your data.</Text>
     <Text style={styles.securityNote}>What you do here is between you and your friends.</Text>
   </MainLayout>
@@ -32,10 +30,19 @@ Initial.navigationOptions = {
 
 const styles = StyleSheet.create({
   encouregment: {
-    color: '#ffffff'
+    color: '#ffffff',
+    fontSize: 20,
+    textAlign: 'center',
+    marginBottom: 20,
+    textTransform: 'uppercase',
   },
-  button: {
-    backgroundColor: colors.bg1
+  securityNote: {
+    marginTop: 20,
+    color: '#ffffff',
+    fontSize: 20,
+    textAlign: 'center',
+    opacity: 0.5,
+    textTransform: 'uppercase',
   },
 });
 
