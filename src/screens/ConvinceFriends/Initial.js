@@ -4,6 +4,7 @@ import { StyleSheet } from 'react-native';
 import LinearGradient from 'components/shared/LinearGradient.js';
 
 import colors from 'constants/colors.js';
+
 const Initial = ({ navigation: { navigate } }) => (
   <LinearGradient>
     <Text style={styles.encouregment}>
