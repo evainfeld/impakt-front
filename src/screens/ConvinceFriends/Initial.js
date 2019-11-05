@@ -4,7 +4,7 @@ import { StyleSheet } from 'react-native';
 import LinearGradient from 'components/shared/LinearGradient.js';
 
 import colors from 'constants/colors.js';
-const ConvinceFriends = () => (
+const Initial = ({ navigation: { navigate } }) => (
   <LinearGradient>
     <Text style={styles.encouregment}>
       No one can talk to your friends better than YOU.
@@ -17,7 +17,6 @@ const ConvinceFriends = () => (
         </Text>
     <Button
       title="Let's do it"
-      onPress={() => Alert.alert('You did it!')} //onPress={() => navigate('Profile', {name: 'Jane'})}
       color={colors.bg1}
     />
     <Text style={styles.securityNote}>We do not collect your data.</Text>
@@ -25,8 +24,8 @@ const ConvinceFriends = () => (
   </LinearGradient>
 );
 
-ConvinceFriends.navigationOptions = {
-  title: 'Welcome to Convince Friends',
+Initial.navigationOptions = {
+  title: 'Convince Friends',
 };
 
 const styles = StyleSheet.create({
@@ -42,4 +41,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default ConvinceFriends;
+export default Initial;

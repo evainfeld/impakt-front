@@ -15,7 +15,7 @@ class MenuScreen extends React.Component {
           <Button block light large   style={styles.button} onPress={() => navigate('GetInvolved', {name: 'Jane'})}>  
               <Text  >Get Involved</Text>
           </Button>
-          <Button  block large style={styles.button} onPress={() => navigate('ConvinceFriends', {name: 'Jane'})}>
+          <Button  block large style={styles.button} onPress={() => navigate('ConvinceFriendsInitial')}>
              <Text  >Convince Friends</Text>
           </Button>
           <Button block large style={styles.button} onPress={() => navigate('NewsEvents', {name: 'Jane'})}>
