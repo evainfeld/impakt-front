@@ -3,6 +3,7 @@ import * as Font from 'expo-font';
 import MenuScreen from './src/screens/MenuScreen';
 import ContactCoordinator from './src/screens/ContactCoordinator';
 import ConvinceFriendsInitial from './src/screens/ConvinceFriends/Initial';
+import ConvinceFriendsTopics from './src/screens/ConvinceFriends/Topics';
 import GetInvolved from './src/screens/GetInvolved';
 import NewsEvents from './src/screens/NewsEvents';
 import LocalChat from './src/screens/LocalChat';
@@ -14,6 +15,7 @@ const MainNavigator = createStackNavigator({
   Menu: { screen: MenuScreen },
   GetInvolved: { screen: GetInvolved },
   ConvinceFriendsInitial: { screen: ConvinceFriendsInitial },
+  ConvinceFriendsTopics: { screen: ConvinceFriendsTopics },
   NewsEvents: { screen: NewsEvents },
   LocalChat: { screen: LocalChat },
   ContactCoordinator: { screen: ContactCoordinator },

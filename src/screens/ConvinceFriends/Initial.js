@@ -17,6 +17,7 @@ const Initial = ({ navigation: { navigate } }) => (
         </Text>
     <Button
       title="Let's do it"
+      onPress={() => navigate('ConvinceFriendsTopics')}
       color={colors.bg1}
     />
     <Text style={styles.securityNote}>We do not collect your data.</Text>
