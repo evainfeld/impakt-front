@@ -30,6 +30,7 @@ Initial.navigationOptions = {
 
 const styles = StyleSheet.create({
   encouregment: {
+    marginTop: 20,
     color: '#ffffff',
     fontSize: 20,
     textAlign: 'center',
