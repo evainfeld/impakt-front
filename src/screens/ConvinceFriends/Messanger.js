@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import { Text } from 'native-base';
-import { StyleSheet, TextInput } from 'react-native';
+import { Text, Button } from 'native-base';
+import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, TextInput, View } from 'react-native';
+import { Header } from 'react-navigation-stack';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 import MainLayout from 'components/layouts/MainLayout.js'
 
@@ -10,19 +12,61 @@ const Messanger = (props) => {
 
   return (
     <MainLayout>
-      <Text style={styles.text}>
-        Let's convince your friends who value:
-      </Text>
-      <Text style={styles.text}>
-        {topic.title}
-      </Text>
-      <TextInput
-        style={styles.textInput}
-        multiline
-        onChangeText={text => onChangeText(text)}
-        value={value}
-        maxLength={2000}
-      />
+      <KeyboardAvoidingView behavior={Platform.Os == "ios" ? "padding" : "height" } enabled style={styles.container}>
+        <ScrollView>
+          <Text style={styles.text}>
+            Let's convince your friends who value:
+          </Text>
+          <Text style={styles.text}>
+            {topic.title}
+          </Text>
+          <TextInput
+            style={styles.textInput}
+            multiline
+            onChangeText={text => onChangeText(text)}
+            value={value}
+            maxLength={2000}
+          />
+          <Button block light full large>
+            <Text>Let's do it</Text>
+          </Button>
+          <Button block light full large>
+            <Text>Let's do it</Text>
+          </Button>
+          <Button block light full large>
+            <Text>Let's do it</Text>
+          </Button>
+        </ScrollView>
+      </KeyboardAvoidingView>
+
+      {/* <KeyboardAvoidingView keyboardVerticalOffset={Header.HEIGHT + 20} style={styles.container} behavior="padding" keyboardVerticalOffset={20} > */}
+        {/* <KeyboardAwareScrollView extraHeight={180} style={{ borderWidth: 2, borderColor: 'red' }}>
+          <View style={{ borderWidth: 2, borderColor: 'blue', height: 800 }}>
+            <Text style={styles.text}>
+              Let's convince your friends who value:
+            </Text>
+            <Text style={styles.text}>
+              {topic.title}
+            </Text>
+            <TextInput
+              style={styles.textInput}
+              multiline
+              onChangeText={text => onChangeText(text)}
+              value={value}
+              maxLength={2000}
+            />
+            <Button block light full large>
+              <Text>Let's do it</Text>
+            </Button>
+            <Button block light full large>
+              <Text>Let's do it</Text>
+            </Button>
+            <Button block light full large>
+              <Text>Let's do it</Text>
+            </Button>
+          </View>
+        </KeyboardAwareScrollView> */}
+      {/* </KeyboardAvoidingView> */}
     </MainLayout>
   )
 }
@@ -32,6 +76,10 @@ Messanger.navigationOptions = {
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flexGrow: 1,
+    borderWidth: 1
+  },
   text: {
     marginTop: 20,
     color: '#ffffff',
@@ -40,7 +88,8 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
   },
   textInput: {
-    flex: 1,
+    flexGrow: 1,
+    // height: 300,
     marginTop: 40,
     marginBottom: 40,
     padding: 20,
