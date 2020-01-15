@@ -9,39 +9,39 @@ import general from 'constants/general.js';
 const TOPICS_DATA = [
   {
     title: 'Quality education for children',
-    defaultMessages: ['default message for Quality education for children', 'another default message']
+    defaultMessages: ['default message for Quality education for children', 'another default message', 'msg 3', 'msg 4', 'msg 5', 'msg 6']
   },
   {
     title: 'Rising costs of school supplies',
-    defaultMessages: ['default message for Rising costs of school supplies', 'another default message']
+    defaultMessages: ['default message for Rising costs of school supplies', 'another default message', 'msg 3', 'msg 4', 'msg 5', 'msg 6']
   },
   {
     title: 'Opposing the current government',
-    defaultMessages: ['default message for Opposing the current government', 'another default message']
+    defaultMessages: ['default message for Opposing the current government', 'another default message', 'msg 3', 'msg 4', 'msg 5', 'msg 6']
   },
   {
     title: 'Women rights',
-    defaultMessages: ['default message for Women rights', 'another default message']
+    defaultMessages: ['default message for Women rights', 'another default message', 'msg 3', 'msg 4', 'msg 5', 'msg 6']
   },
   {
     title: 'Global warming',
-    defaultMessages: ['default message for Global warming', 'another default message']
+    defaultMessages: ['default message for Global warming', 'another default message', 'msg 3', 'msg 4', 'msg 5', 'msg 6']
   },
   {
     title: 'Topic 1',
-    defaultMessages: ['default message for Topic 1', 'another default message']
+    defaultMessages: ['default message for Topic 1', 'another default message', 'msg 3', 'msg 4', 'msg 5', 'msg 6']
   },
   {
     title: 'Topic 2',
-    defaultMessages: ['default message for Topic 2']
+    defaultMessages: ['default message for Topic 2', 'another', 'msg 3', 'msg 4', 'msg 5', 'msg 6']
   },
   {
     title: 'Topic 3',
-    defaultMessages: ['default message for Topic 3']
+    defaultMessages: ['default message for Topic 3', 'another', 'msg 3', 'msg 4', 'msg 5', 'msg 6']
   },
   {
     title: 'Topic 4',
-    defaultMessages: ['default message for Topic 4']
+    defaultMessages: ['default message for Topic 4', 'another', 'msg 3', 'msg 4', 'msg 5', 'msg 6']
   },
 ]
 
