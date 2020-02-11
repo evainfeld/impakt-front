@@ -6,9 +6,9 @@ import colors from 'constants/colors.js';
 const LinearGradientWrapper = ({
   children,
   // define own below props rendering the component or be happy with default values:
-  start = { x: 0, y: 0 },
-  end = { x: 1, y: 1 },
-  colorsArr = [colors.bg3, colors.bg1],
+  start = { x: 0.3, y: 1 },
+  end = { x: 1, y: 0 },
+  colorsArr = [colors.gradientDark, colors.brandDark],
   style = styles.linearGradient
 }) => (
     <LinearGradient
