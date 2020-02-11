@@ -17,7 +17,7 @@ const Initial = ({ navigation: { navigate } }) => (
       Let's convince them to support our common cause TOGETHER
     </Text>
     <Button block light full large onPress={() => navigate('ConvinceFriendsTopics')}>
-      <Text>Let's do it</Text>
+      <Text style={styles.buttonText}>Let's do it</Text>
     </Button>
     <Text style={styles.securityNote}>We do not collect your data.</Text>
     <Text style={styles.securityNote}>What you do here is between you and your friends.</Text>
@@ -29,6 +29,9 @@ Initial.navigationOptions = {
 };
 
 const styles = StyleSheet.create({
+  buttonText: {
+    fontFamily: 'Exo800',
+  },
   encouregment: {
     marginTop: 20,
     color: '#ffffff',
