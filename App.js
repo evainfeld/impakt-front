@@ -35,17 +35,17 @@ export default class App extends Component {
   async componentWillMount() {
     await Font.loadAsync({
       // headers font:
-      Exo: require('./assets/Fonts/exo-2-400.ttf'),
-      Exo700: require('./assets/Fonts/exo-2-700.ttf'),
-      Exo800: require('./assets/Fonts/exo-2-800.ttf'),
+      Exo: require('./assets/fonts/exo-2-400.ttf'),
+      Exo700: require('./assets/fonts/exo-2-700.ttf'),
+      Exo800: require('./assets/fonts/exo-2-800.ttf'),
       // regular text font:
-      Roboto: require('./assets/Fonts/Roboto.ttf'),
-      Roboto_medium: require('./assets/Fonts/Roboto_medium.ttf'),
+      Roboto: require('./assets/fonts/Roboto.ttf'),
+      Roboto_medium: require('./assets/fonts/Roboto_medium.ttf'),
       // logo font:
-      TerminaMedium: require('./assets/Fonts/Termina-Medium.otf'),
-      TerminaLight: require('./assets/Fonts/Termina-Light.otf'),
+      TerminaMedium: require('./assets/fonts/Termina-Medium.otf'),
+      TerminaLight: require('./assets/fonts/Termina-Light.otf'),
       // icon font:
-      Ionicons: require('./assets/Fonts/Ionicons.ttf'),
+      Ionicons: require('./assets/fonts/Ionicons.ttf'),
     })
     this.setState({ isReady: true })
   }
