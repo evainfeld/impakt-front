@@ -3,8 +3,7 @@ import { Text, FlatList, TouchableOpacity } from 'react-native';
 import { StyleSheet } from 'react-native';
 
 import MainLayout from 'components/layouts/MainLayout.js'
-
-import general from 'constants/general.js';
+import { LargeText } from 'components/shared/basic/index.js'
 
 const TOPICS_DATA = [
   {
@@ -55,9 +54,9 @@ const Item = ({ title, goToMessanger }) => (
 
 const Topics = ({ navigation: { navigate } }) => (
   <MainLayout>
-    <Text style={styles.header}>
+    <LargeText style={styles.header}>
       Let's convince your friends, who value:
-    </Text>
+    </LargeText>
     <FlatList style={styles.listContainer}
       data={TOPICS_DATA}
       renderItem={({ item }) => (
@@ -79,11 +78,8 @@ Topics.navigationOptions = {
 
 const styles = StyleSheet.create({
   header: {
-    color: '#ffffff',
-    textAlign: 'center',
     marginTop: 20,
     marginBottom: 20,
-    fontSize: general.h1Size,
   },
   listContainer: {
     backgroundColor: 'transparent',

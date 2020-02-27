@@ -7,6 +7,7 @@ import { Header } from 'react-navigation-stack';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 import MainLayout from 'components/layouts/MainLayout.js'
+import { HeaderRegular } from 'components/shared/basic/index.js'
 
 
 const Messanger = (props) => {
@@ -23,12 +24,9 @@ const Messanger = (props) => {
     <MainLayout>
       <KeyboardAvoidingView behavior={Platform.Os == "ios" ? "padding" : "height"} enabled style={styles.container}>
         <ScrollView>
-          <Text style={styles.text}>
-            Let's convince your friends who value:
-          </Text>
-          <Text style={styles.text}>
+          <HeaderRegular style={styles.header}>
             {topic.title}
-          </Text>
+          </HeaderRegular>
           <TextInput
             style={styles.textInput}
             multiline
@@ -92,17 +90,12 @@ const styles = StyleSheet.create({
   container: {
     flexGrow: 1
   },
-  text: {
+  header: {
     marginTop: 20,
-    color: '#ffffff',
-    fontSize: 20,
-    textAlign: 'center',
-    textTransform: 'uppercase',
   },
   textInput: {
     flexGrow: 1,
-    // height: 300,
-    marginTop: 40,
+    marginTop: 20,
     marginBottom: 40,
     padding: 20,
     fontSize: 16,
