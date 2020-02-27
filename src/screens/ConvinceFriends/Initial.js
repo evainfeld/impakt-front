@@ -1,9 +1,8 @@
 import React from 'react';
-import { TouchableOpacity, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
-import colors from 'constants/colors.js';
 import MainLayout from 'components/layouts/MainLayout.js'
-import { RegularText, HeaderYellow, TextButton } from 'components/shared/basic/index.js'
+import { RegularButton, RegularText, HeaderYellow } from 'components/shared/basic/index.js'
 
 const Initial = ({ navigation: { navigate } }) => (
   <MainLayout>
@@ -17,9 +16,11 @@ const Initial = ({ navigation: { navigate } }) => (
       <RegularText style={{ marginBottom: 40 }}>
         Let's convince them to support our common cause TOGETHER
       </RegularText>
-      <TouchableOpacity style={styles.button} onPress={() => navigate('ConvinceFriendsTopics')}>
-        <TextButton>Let's do it</TextButton>
-      </TouchableOpacity>
+      <RegularButton
+        action={() => navigate('ConvinceFriendsTopics')}
+        content="Let's do it"
+        style={styles.button}
+      />
       <HeaderYellow>We do not collect your data.</HeaderYellow>
       <HeaderYellow>What you do here is between you and your friends.</HeaderYellow>
     </View>
@@ -32,11 +33,7 @@ Initial.navigationOptions = {
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: colors.brandLight,
-    marginBottom: 60,
-  },
-  buttonText: {
-    fontFamily: 'Exo800',
+    marginBottom: 10,
   },
   container: {
     flex: 1,

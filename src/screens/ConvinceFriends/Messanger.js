@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import sample from 'lodash/sample';
 import without from 'lodash/without';
-import { Text, Button } from 'native-base';
 import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, TextInput, View } from 'react-native';
-import { Header } from 'react-navigation-stack';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+// import { Header } from 'react-navigation-stack';
+// import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 import MainLayout from 'components/layouts/MainLayout.js'
-import { HeaderRegular } from 'components/shared/basic/index.js'
+import { HeaderRegular, DarkButton, YellowButton } from 'components/shared/basic/index.js'
 
 
 const Messanger = (props) => {
@@ -34,19 +33,14 @@ const Messanger = (props) => {
             value={value}
             maxLength={2000}
           />
-          <Button
-            block
-            light
-            full
-            large
-            style={styles.button}
-            onPress={changeDefaultMsg}
-          >
-            <Text>Pick another msg</Text>
-          </Button>
-          <Button block light full large style={styles.button}>
-            <Text>Send</Text>
-          </Button>
+          <DarkButton
+            action={changeDefaultMsg}
+            content='Pick another message'
+          />
+          <YellowButton
+            // action={}
+            content='Send'
+          />
         </ScrollView>
       </KeyboardAvoidingView>
 
@@ -102,9 +96,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffffff',
     textAlignVertical: 'top'
   },
-  button: {
-    marginBottom: 20
-  }
 });
 
 export default Messanger;

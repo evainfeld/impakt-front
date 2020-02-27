@@ -1,9 +1,9 @@
 import React from 'react';
-import { Text, FlatList, TouchableOpacity } from 'react-native';
-import { StyleSheet } from 'react-native';
+import { FlatList, StyleSheet } from 'react-native';
 
 import MainLayout from 'components/layouts/MainLayout.js'
-import { LargeText } from 'components/shared/basic/index.js'
+import { ButtonListItem, LargeText } from 'components/shared/basic/index.js'
+
 
 const TOPICS_DATA = [
   {
@@ -45,11 +45,7 @@ const TOPICS_DATA = [
 ]
 
 const Item = ({ title, goToMessanger }) => (
-  <TouchableOpacity onPress={goToMessanger}>
-    <Text style={styles.listItem} key={title} >
-      {title}
-    </Text >
-  </TouchableOpacity>
+  <ButtonListItem action={goToMessanger} content={title} />
 )
 
 const Topics = ({ navigation: { navigate } }) => (
