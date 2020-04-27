@@ -1,20 +1,20 @@
-import React, { Component } from 'react';
-import * as Font from 'expo-font';
-import { StoreProvider } from './src/helpers/store.js';
-import ChooseRegion from './src/screens/ChooseRegion';
-import MenuScreen from './src/screens/MenuScreen';
-import ContactCoordinator from './src/screens/GetInvolved/ContactCoordinator';
-import ConvinceFriendsInitial from './src/screens/ConvinceFriends/Initial';
-import ConvinceFriendsTopics from './src/screens/ConvinceFriends/Topics';
-import ConvinceFriendsMessanger from './src/screens/ConvinceFriends/Messanger';
-import GetInvolved from './src/screens/GetInvolved/index.js';
-import NewsEvents from './src/screens/NewsEvents/index.js';
-import LocalChat from './src/screens/LocalChat';
+import React, { Component } from 'react'
+import * as Font from 'expo-font'
+import { StoreProvider } from './src/helpers/store.js'
+import ChooseRegion from './src/screens/ChooseRegion'
+import MenuScreen from './src/screens/MenuScreen'
+import ContactCoordinator from './src/screens/GetInvolved/ContactCoordinator'
+import ConvinceFriendsInitial from './src/screens/ConvinceFriends/Initial'
+import ConvinceFriendsTopics from './src/screens/ConvinceFriends/Topics'
+import ConvinceFriendsMessanger from './src/screens/ConvinceFriends/Messanger'
+import GetInvolved from './src/screens/GetInvolved/index.js'
+import NewsEvents from './src/screens/NewsEvents/index.js'
+import LocalChat from './src/screens/LocalChat/index.js'
 import MenuModal from './src/components/shared/MenuModal.js'
 
-import { createAppContainer } from 'react-navigation';
-import { createStackNavigator } from 'react-navigation-stack';
-import { navigationRef } from 'helpers/rootNavigation.js';
+import { createAppContainer } from 'react-navigation'
+import { createStackNavigator } from 'react-navigation-stack'
+import { navigationRef } from 'helpers/rootNavigation.js'
 import { Platform, View } from 'react-native'
 import constants from './src/constants/general.js'
 
@@ -28,16 +28,16 @@ const MainNavigator = createStackNavigator({
   NewsEvents: { screen: NewsEvents },
   LocalChat: { screen: LocalChat },
   ContactCoordinator: { screen: ContactCoordinator },
-}, { headerLayoutPreset: 'center' });
+}, { headerLayoutPreset: 'center' })
 
-const AppWithNav = createAppContainer(MainNavigator);
+const AppWithNav = createAppContainer(MainNavigator)
 
 export default class App extends Component {
   constructor() {
-    super();
+    super()
     this.state = {
       isReady: false,
-    };
+    }
   }
   async componentWillMount() {
     await Font.loadAsync({
