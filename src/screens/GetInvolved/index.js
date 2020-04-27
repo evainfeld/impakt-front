@@ -23,7 +23,7 @@ const GetInvolved = ({ navigation: { navigate } }) => {
         />
         <ButtonListItem
           theme='dark'
-          action={() => navigate('LocalChat')}
+          action={() => navigate('LocalChat', { nickname: null })}
           content={'make friends nearby on the local chat'}
         />
       </View>

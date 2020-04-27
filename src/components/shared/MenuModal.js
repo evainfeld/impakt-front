@@ -13,15 +13,15 @@ import constants from 'constants/general.js'
 import { useStore } from 'helpers/store.js'
 import * as RootNavigation from 'helpers/rootNavigation.js'
 
-const goToScreen = (name, dispatch) => {
+const goToScreen = (name, dispatch, params) => {
   dispatch({ type: 'toggleMenu' })
-  RootNavigation.navigate(name)
+  RootNavigation.navigate(name, params)
 }
 
-const MenuItem = ({ title, screenName }) => {
+const MenuItem = ({ title, screenName, params = {} }) => {
   const { dispatch } = useStore()
   return <TouchableHighlight
-    onPress={() => { goToScreen(screenName, dispatch) }}
+    onPress={() => { goToScreen(screenName, dispatch, params) }}
   >
     <HeaderYellow style={styles.menuItem}>{title}</HeaderYellow>
   </TouchableHighlight>
@@ -47,7 +47,7 @@ const MenuModal = () => {
             <MenuItem title='Get Involved' screenName='GetInvolved' />
             <MenuItem title='Convince Friends' screenName='ConvinceFriendsTopics' />
             <MenuItem title='News & Events' screenName='NewsEvents' />
-            <MenuItem title='Local Chat' screenName='LocalChat' />
+            <MenuItem title='Local Chat' screenName='LocalChat' params={{ nickname: null }} />
           </View>
         </View>
       </TouchableWithoutFeedback>

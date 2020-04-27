@@ -58,6 +58,7 @@ export default class App extends Component {
     })
     this.setState({ isReady: true })
   }
+
   render() {
     if (!this.state.isReady) return null // TODO: loading screen
 

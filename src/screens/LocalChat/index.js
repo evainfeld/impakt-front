@@ -1,12 +1,6 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
-  Keyboard,
-  KeyboardAvoidingView,
-  Platform,
-  ScrollView,
   StyleSheet,
-  TextInput,
-  TouchableWithoutFeedback,
   View
 } from 'react-native'
 import navigationOptions from 'helpers/navigationOptions.js'
@@ -15,8 +9,13 @@ import MainLayout from 'components/layouts/MainLayout.js'
 import { HeaderRegular, DarkButton, YellowButton } from 'components/shared/basic/index.js'
 import SetNickname from './SetNickname.js'
 
-const LocalChat = (props) => {
-  const [nickname, setNickname] = useState(null)
+const LocalChat = ({ navigation: { state: { params } } }) => {
+  const [nickname, setNickname] = useState(params.nickname)
+  
+  useEffect(() => {
+    setNickname(params.nickname)
+  }, [params])
+
   return (
     <MainLayout>
       {!nickname && <SetNickname setNickname={setNickname} />}

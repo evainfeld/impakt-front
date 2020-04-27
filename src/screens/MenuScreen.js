@@ -11,19 +11,19 @@ const MenuScreen = ({ navigation }) => {
     <MainLayout>
       <View style={styles.container}>
         <ButtonListItem
-          action={() => navigate('GetInvolved', { name: 'Jane' })}
+          action={() => navigate('GetInvolved')}
           content={'Get Involved'}
         />
         <ButtonListItem
-          action={() => navigate('ConvinceFriendsInitial', { name: 'Jane' })}
+          action={() => navigate('ConvinceFriendsInitial')}
           content={'Convince Friends'}
         />
         <ButtonListItem
-          action={() => navigate('NewsEvents', { name: 'Jane' })}
+          action={() => navigate('NewsEvents')}
           content={'News & Events'}
         />
         <ButtonListItem
-          action={() => navigate('LocalChat', { name: 'Jane' })}
+          action={() => navigate('LocalChat', { nickname: null })}
           content={'Local Chat'}
         />
       </View>
