@@ -19,7 +19,14 @@ const LocalChat = (props) => {
   const [nickname, setNickname] = useState(null)
   return (
     <MainLayout>
-      <SetNickname nickname={nickname} setNickname={setNickname} />
+      {!nickname && <SetNickname setNickname={setNickname} />}
+      {nickname && (
+        <View style={styles.flex1}>
+          <HeaderRegular>Hi {nickname}!</HeaderRegular>
+          <HeaderRegular>Chat List</HeaderRegular>
+          <HeaderRegular>Chat Input with button</HeaderRegular>
+        </View>
+      )}
     </MainLayout>
   )
 }

@@ -12,9 +12,11 @@ import {
 import navigationOptions from 'helpers/navigationOptions.js'
 
 import MainLayout from 'components/layouts/MainLayout.js'
-import { HeaderRegular, DarkButton, YellowButton } from 'components/shared/basic/index.js'
+import { HeaderRegular, HeaderYellow, DarkButton } from 'components/shared/basic/index.js'
 
-const SetNickName = ({nickname, setNickname}) => {
+const SetNickName = ({ setNickname }) => {
+  const [value, setValue] = useState(null)
+
   return (
     <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
       <KeyboardAvoidingView
@@ -25,21 +27,22 @@ const SetNickName = ({nickname, setNickname}) => {
           <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
             <View style={styles.inner}>
               <HeaderRegular style={styles.header}>
-                title
+                Chose your nickname:
                 </HeaderRegular>
               <TextInput
                 style={styles.textInput}
-                multiline
-                onChangeText={text => setNickname(text)}
-                value={nickname}
-                maxLength={2000}
+                onChangeText={text => setValue(text)}
+                value={value}
+                maxLength={20}
               />
             </View>
           </TouchableWithoutFeedback>
           <DarkButton
-            // action={}
-            content='button'
+            action={() => setNickname(value)}
+            content='enter chat'
           />
+          <HeaderYellow>IMPAKT does not save your nickname for safety reasons.</HeaderYellow>
+          <HeaderYellow>If someone confiscates your phone, we don't want them to learn what you did in the app.</HeaderYellow>
           <View style={styles.flex1} />
         </View>
       </KeyboardAvoidingView>
@@ -69,7 +72,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     backgroundColor: '#ffffff',
     textAlignVertical: 'top',
-    maxHeight: 140,
+    maxHeight: 60,
   },
 })
 
