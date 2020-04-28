@@ -11,7 +11,6 @@ import {
 } from 'react-native'
 import navigationOptions from 'helpers/navigationOptions.js'
 
-import MainLayout from 'components/layouts/MainLayout.js'
 import { HeaderRegular, HeaderYellow, DarkButton } from 'components/shared/basic/index.js'
 
 const SetNickName = ({ setNickname }) => {

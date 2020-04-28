@@ -6,12 +6,13 @@ import {
 import navigationOptions from 'helpers/navigationOptions.js'
 
 import MainLayout from 'components/layouts/MainLayout.js'
-import { HeaderRegular, DarkButton, YellowButton } from 'components/shared/basic/index.js'
 import SetNickname from './SetNickname.js'
+import Conversation from './Conversation.js'
+import Form from './Form.js'
 
 const LocalChat = ({ navigation: { state: { params } } }) => {
   const [nickname, setNickname] = useState(params.nickname)
-  
+
   useEffect(() => {
     setNickname(params.nickname)
   }, [params])
@@ -21,9 +22,8 @@ const LocalChat = ({ navigation: { state: { params } } }) => {
       {!nickname && <SetNickname setNickname={setNickname} />}
       {nickname && (
         <View style={styles.flex1}>
-          <HeaderRegular>Hi {nickname}!</HeaderRegular>
-          <HeaderRegular>Chat List</HeaderRegular>
-          <HeaderRegular>Chat Input with button</HeaderRegular>
+          <Conversation />
+          <Form />
         </View>
       )}
     </MainLayout>
@@ -33,27 +33,7 @@ const LocalChat = ({ navigation: { state: { params } } }) => {
 LocalChat.navigationOptions = navigationOptions()
 
 const styles = StyleSheet.create({
-  container: {
-    flexGrow: 1
-  },
   flex1: { flex: 1 },
-  header: {
-    marginTop: 20,
-  },
-  inner: {
-    flex: 1,
-    justifyContent: "flex-end",
-  },
-  textInput: {
-    flexGrow: 1,
-    marginTop: 20,
-    marginBottom: 40,
-    padding: 20,
-    fontSize: 16,
-    backgroundColor: '#ffffff',
-    textAlignVertical: 'top',
-    maxHeight: 140,
-  },
 })
 
 export default LocalChat
