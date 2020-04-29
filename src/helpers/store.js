@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useReducer } from 'react'
 import events from './dummyData/mockedNewsAndEvents.json' // mocking data with https://mockaroo.com/
+import chatMessages from './dummyData/dummyMessage.json'
 import orderBy from 'lodash/orderBy'
 
 const StoreContext = createContext()
@@ -9,6 +10,7 @@ const initialState = {
   menuOpened: false,
   events: orderBy(events, (e) => new Date(e.date), 'asc'),
   nextEvent: 0,
+  chatMessages: chatMessages,
 }
 
 replace = (state, keyToReplace, value) => {
