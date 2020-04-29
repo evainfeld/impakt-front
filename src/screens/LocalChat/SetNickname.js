@@ -11,7 +11,7 @@ import {
 } from 'react-native'
 import navigationOptions from 'helpers/navigationOptions.js'
 
-import { HeaderRegular, HeaderYellow, DarkButton } from 'components/shared/basic/index.js'
+import { HeaderRegular, HeaderYellow, ButtonListItem } from 'components/shared/basic/index.js'
 
 const SetNickName = ({ setNickname }) => {
   const [value, setValue] = useState(null)
@@ -36,9 +36,10 @@ const SetNickName = ({ setNickname }) => {
               />
             </View>
           </TouchableWithoutFeedback>
-          <DarkButton
+          <ButtonListItem
             action={() => setNickname(value)}
-            content='enter chat'
+            content={'enter chat'}
+            theme={'dark'}
           />
           <HeaderYellow>IMPAKT does not save your nickname for safety reasons.</HeaderYellow>
           <HeaderYellow>If someone confiscates your phone, we don't want them to learn what you did in the app.</HeaderYellow>
