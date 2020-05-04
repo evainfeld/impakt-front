@@ -1,6 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Picker, Platform, StyleSheet, View } from 'react-native';
 import { useStore } from 'helpers/store.js'
+
+import { API, graphqlOperation } from 'aws-amplify'
+import { listLocation } from 'api/queries.js'
 
 import MainLayout from 'components/layouts/MainLayout.js'
 import { RegularButton, HeaderYellow } from 'components/shared/basic/index.js'
@@ -10,24 +13,27 @@ import colors from 'constants/colors'
 const ChooseRegion = ({ navigation: { navigate } }) => {
   const { dispatch } = useStore()
   const [selectedValue, setSelectedValue] = useState(false)
-  const regions = [
-    'dolnośląskie',
-    'kujawsko-pomorskie',
-    'lubelskie',
-    'lubuskie',
-    'łódzkie',
-    'małopolskie',
-    'mazowieckie',
-    'opolskie',
-    'podkarpackie',
-    'podlaskie',
-    'pomorskie',
-    'śląskie',
-    'świętokrzyskie',
-    'warmińsko-mazurskie',
-    'wielkopolskie',
-    'zachodniopomorskie'
-  ]
+  const [locations, setLocations] = useState([])
+
+  useEffect(() => {
+    getLocationList = async () => {
+      const result = await API.graphql(graphqlOperation(listLocation, locationParams))
+      setLocations(result.data.listLocation.items)
+    }
+  
+    getLocationList()
+  }, [])
+
+  const locationParams = {
+    // should be based on organization (TODO)
+    "org": "ZZ", 
+    "region": {
+      "beginsWith": "ZZ::PL::WAW"
+    },
+    "limit": 100,
+    "nextToken": null,
+    "sortDirection": "ASC"
+  }
 
   const submit = () => {
     dispatch({ type: "setRegion", payload: selectedValue })
@@ -36,15 +42,15 @@ const ChooseRegion = ({ navigation: { navigate } }) => {
 
   return (
     <MainLayout>
-      <View style={styles.container}>
+      {locations && <View style={styles.container}>
         <Picker
           selectedValue={selectedValue}
           style={Platform.OS === 'android' ? styles.picker : {}}
           itemStyle={Platform.OS === 'ios' ? { backgroundColor: '#fff' } : {}}
-          onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
+          onValueChange={(itemValue) => setSelectedValue(itemValue)}
         >
           <Picker.Item key={'not selected'} label={'not selected'} value={false} />
-          {regions.map(e => <Picker.Item key={e} label={e} value={e} />)}
+          {locations.map(e => <Picker.Item key={e.id} label={e.name} value={e.name} />)}
         </Picker>
         <RegularButton
           action={submit}
@@ -53,7 +59,7 @@ const ChooseRegion = ({ navigation: { navigate } }) => {
           style={styles.button}
         />
         <HeaderYellow>We do not collect your data.</HeaderYellow>
-      </View>
+      </View>}
     </MainLayout>
   );
 }
