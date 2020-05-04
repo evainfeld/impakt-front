@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { Picker, Platform, StyleSheet, View } from 'react-native';
+import React, { useEffect, useState } from 'react'
+import { Picker, Platform, StyleSheet, View } from 'react-native'
+import find from 'lodash/find'
 import { useStore } from 'helpers/store.js'
 
 import { API, graphqlOperation } from 'aws-amplify'
@@ -20,13 +21,13 @@ const ChooseRegion = ({ navigation: { navigate } }) => {
       const result = await API.graphql(graphqlOperation(listLocation, locationParams))
       setLocations(result.data.listLocation.items)
     }
-  
+
     getLocationList()
   }, [])
 
   const locationParams = {
     // should be based on organization (TODO)
-    "org": "ZZ", 
+    "org": "ZZ",
     "region": {
       "beginsWith": "ZZ::PL::WAW"
     },
@@ -36,7 +37,10 @@ const ChooseRegion = ({ navigation: { navigate } }) => {
   }
 
   const submit = () => {
-    dispatch({ type: "setRegion", payload: selectedValue })
+    dispatch({
+      type: "setRegion",
+      payload: find(locations, (i) => i.name === selectedValue)
+    })
     navigate('MenuScreen')
   }
 

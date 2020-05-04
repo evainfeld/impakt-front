@@ -32,7 +32,7 @@ const reducer = (state, action) => {
       // find & order all events in region:
       const eventsInRegion = orderBy(
         events.filter(
-          (e) => e.region === action.payload
+          (e) => e.region === action.payload.name
         ), (e) => new Date(e.date), 'asc')
       // add events to the state:
       let tempState = replace(state, 'events', eventsInRegion)

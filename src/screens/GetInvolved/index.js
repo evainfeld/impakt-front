@@ -29,7 +29,7 @@ const GetInvolved = ({ navigation: { navigate } }) => {
       </View>
       <View style={styles.container2}>
         <HeaderRegular style={styles.info}>There {state.numberOfUsers > 1 ? 'are' : 'is'} at least {state.numberOfUsers} of us in:</HeaderRegular>
-        <HeaderRegular style={styles.infoBig}>{state.region}</HeaderRegular>
+        <HeaderRegular style={styles.infoBig}>{state.region.name}</HeaderRegular>
       </View>
     </MainLayout>
   )
