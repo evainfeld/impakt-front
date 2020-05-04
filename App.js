@@ -18,6 +18,11 @@ import { navigationRef } from 'helpers/rootNavigation.js'
 import { Platform, View } from 'react-native'
 import constants from './src/constants/general.js'
 
+import Amplify, { Auth } from 'aws-amplify'
+import config from './src/api/aws-exports.js'
+
+Amplify.configure(config)
+
 const MainNavigator = createStackNavigator({
   ChooseRegion: { screen: ChooseRegion },
   MenuScreen: { screen: MenuScreen },
