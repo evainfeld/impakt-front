@@ -9,7 +9,9 @@ import {
   TouchableWithoutFeedback,
   View
 } from 'react-native'
+
 import navigationOptions from 'helpers/navigationOptions.js'
+import { useStore } from 'helpers/store.js'
 
 import MainLayout from 'components/layouts/MainLayout.js'
 import {
@@ -23,10 +25,11 @@ const ContactCoordinator = ({ navigation: { navigate } }) => {
   const [userContact, setUserContact] = useState(null)
   const [optionalMessage, setOptionalMessage] = useState(null)
   const [confirmationMessage, setConfirmationMessage] = useState(null)
-  const [coordinatorName] = useState('Matt')
   const [wasSubmitted, setWasSubmitted] = useState(false)
   const [isValid, setIsValid] = useState(false)
   const [errorMessage, setErrorMessage] = useState(null)
+
+  const { state: { region: { coordinatorName } } } = useStore()
 
   clearFieldsValues = () => {
     setIsValid(false)
