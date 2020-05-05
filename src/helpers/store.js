@@ -8,7 +8,7 @@ const initialState = {
   region: null,
   numberOfUsers: Math.floor((Math.random() * 100) + 1),
   menuOpened: false,
-  events: orderBy(events, (e) => new Date(e.date), 'asc'),
+  events: null, //orderBy(events, (e) => new Date(e.date), 'asc'),
   nextEvent: 0,
   chatMessages: chatMessages,
 }
@@ -29,17 +29,20 @@ findNextEventIndex = (eventsInRegion) => {
 const reducer = (state, action) => {
   switch (action.type) {
     case 'setRegion':
-      // find & order all events in region:
-      const eventsInRegion = orderBy(
-        events.filter(
-          (e) => e.region === action.payload.name
-        ), (e) => new Date(e.date), 'asc')
-      // add events to the state:
-      let tempState = replace(state, 'events', eventsInRegion)
-      // find and add next coming event
-      tempState = replace(tempState, 'nextEvent', findNextEventIndex(eventsInRegion))
-      tempState = replace(tempState, 'activeSlideIndex', findNextEventIndex(eventsInRegion))
-      return replace(tempState, 'region', action.payload)
+      // // find & order all events in region:
+      // const eventsInRegion = orderBy(
+      //   events.filter(
+      //     (e) => e.region === action.payload.name
+      //   ), (e) => new Date(e.date), 'asc')
+      // // add events to the state:
+      // let tempState = replace(state, 'events', eventsInRegion)
+      // // find and add next coming event
+      // tempState = replace(tempState, 'nextEvent', findNextEventIndex(eventsInRegion))
+      // tempState = replace(tempState, 'activeSlideIndex', findNextEventIndex(eventsInRegion))
+      // return replace(tempState, 'region', action.payload)
+      return replace(state, 'region', action.payload)
+    case 'setEvents':
+      return replace(state, 'events', action.payload)
     case 'toggleMenu':
       return replace(state, 'menuOpened', !state.menuOpened)
     case 'setEventCarouselRef':

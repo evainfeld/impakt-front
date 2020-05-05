@@ -32,8 +32,9 @@ const ListItem = ({ event, index }) => {
           </View>
         </View>
         <View style={[styles.row, styles.containerLocation]}>
-          <RegularText style={styles.location}>{event.city} </RegularText>
-          <RegularText style={styles.location}>({event.region})</RegularText>
+          <RegularText style={styles.location}>{event.content} </RegularText>
+          {/* <RegularText style={styles.location}>{event.city} </RegularText> */}
+          {/* <RegularText style={styles.location}>({event.region})</RegularText> */}
         </View>
       </View>
     </TouchableWithoutFeedback>
@@ -41,7 +42,8 @@ const ListItem = ({ event, index }) => {
 }
 
 const Time = ({ event }) => {
-  const rawDate = new Date(event.date)
+  // const rawDate = new Date(event.date)
+  const rawDate = new Date(event.createdAt)
   const formatDate = format(rawDate, 'MM.dd')
   const formatTime = format(rawDate, 'kk:mm')
   return (
@@ -62,7 +64,7 @@ const NewsEventsList = () => {
       <FlatList
         data={events}
         renderItem={({ item, index }) => <ListItem event={item} index={index} />}
-        keyExtractor={(item) => item.id.toString()}
+        keyExtractor={(item) => item.createdAt}
       />
     </View>
   )

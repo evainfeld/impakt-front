@@ -4,7 +4,7 @@ import find from 'lodash/find'
 import { useStore } from 'helpers/store.js'
 
 import { API, graphqlOperation } from 'aws-amplify'
-import { listLocation } from 'api/queries.js'
+import { listEvent, listLocation } from 'api/queries.js'
 
 import MainLayout from 'components/layouts/MainLayout.js'
 import { RegularButton, HeaderYellow } from 'components/shared/basic/index.js'
@@ -27,21 +27,36 @@ const ChooseRegion = ({ navigation: { navigate } }) => {
 
   const locationParams = {
     // should be based on organization (TODO)
-    "org": "ZZ",
-    "region": {
-      "beginsWith": "ZZ::PL::WAW"
+    org: 'ZZ',
+    region: {
+      beginsWith: 'ZZ::PL::WAW'
     },
-    "limit": 100,
-    "nextToken": null,
-    "sortDirection": "ASC"
+    limit: 100,
+    nextToken: null,
+    sortDirection: 'ASC'
   }
 
   const submit = () => {
-    dispatch({
-      type: "setRegion",
-      payload: find(locations, (i) => i.name === selectedValue)
+    const region = find(locations, (i) => i.name === selectedValue)
+    API.graphql(graphqlOperation(listEvent, {
+      org: 'ZZ',
+      sortDirection: 'ASC'
+      // region: region.region
+      // region: {
+      //   beginsWith: region.region // beginWith does not work :(
+      // },
+    })).then((res) => { 
+      dispatch({
+        type: 'setEvents',
+        payload: res.data.listEvent.items
+      })
+    }).then(() => {
+      dispatch({
+        type: 'setRegion',
+        payload: region
+      })
+      navigate('MenuScreen')
     })
-    navigate('MenuScreen')
   }
 
   return (
@@ -58,14 +73,14 @@ const ChooseRegion = ({ navigation: { navigate } }) => {
         </Picker>
         <RegularButton
           action={submit}
-          content="Confirm"
+          content='Confirm'
           disabled={!selectedValue}
           style={styles.button}
         />
         <HeaderYellow>We do not collect your data.</HeaderYellow>
       </View>}
     </MainLayout>
-  );
+  ) 
 }
 
 ChooseRegion.navigationOptions = () => navigationOptions('Choose region', false)
@@ -83,6 +98,6 @@ const styles = StyleSheet.create({
     width: '100%',
     backgroundColor: colors.white
   },
-});
+})
 
-export default ChooseRegion;
+export default ChooseRegion

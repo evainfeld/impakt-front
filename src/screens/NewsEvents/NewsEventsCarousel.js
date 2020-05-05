@@ -19,12 +19,14 @@ import constants from 'constants/general'
 const { width: screenWidth } = Dimensions.get('window')
 
 const Counter = ({ event }) => {
-  const date = new Date(event.date)
+  // const date = new Date(event.date)
+  const date = new Date(event.createdAt)
   const timeNow = new Date()
   return (
     <CountDown
       size={16}
-      until={differenceInSeconds(date, timeNow)}
+      until={500}
+      // until={differenceInSeconds(date, timeNow)}
       style={{ marginTop: -10 }}
       digitStyle={{ backgroundColor: 'transparent', marginTop: 2, marginLeft: -4, marginRight: -4 }}
       digitTxtStyle={{ color: 'yellow', fontFamily: 'Exo' }}
@@ -39,7 +41,8 @@ const Counter = ({ event }) => {
 
 const CarouselCard = ({ item, index }) => {
   const { state: { activeSlideIndex } } = useStore()
-  const isComingEvent = new Date(item.date) > new Date
+  // const isComingEvent = new Date(item.date) > new Date
+  const isComingEvent = new Date(item.createdAt) > new Date("2020-02-25T14:08:48.810Z")
   isActive = activeSlideIndex === index
 
   return (
@@ -56,9 +59,11 @@ const CarouselCard = ({ item, index }) => {
       {isActive && isComingEvent && <Counter event={item} />}
 
       <HeaderRegular style={{ fontFamily: 'Exo', marginTop: 0, marginBottom: 5, fontSize: 16 }}>{item.title}</HeaderRegular>
-      <RegularText style={{ fontFamily: 'Exo', marginTop: 0, marginBottom: 5, fontSize: 14 }}>{item.street}, {item.city}</RegularText>
+      {/* <RegularText style={{ fontFamily: 'Exo', marginTop: 0, marginBottom: 5, fontSize: 14 }}>{item.street}, {item.city}</RegularText> */}
+      <RegularText style={{ fontFamily: 'Exo', marginTop: 0, marginBottom: 5, fontSize: 14 }}>{item.content}</RegularText>
       <RegularText style={{ fontFamily: 'Exo', marginTop: 0, marginBottom: 5, fontSize: 12 }}>{item.region}</RegularText>
-      <RegularText style={{ fontFamily: 'Exo', marginTop: 0, marginBottom: 5, fontSize: 12 }}>{item.date}</RegularText>
+      {/* <RegularText style={{ fontFamily: 'Exo', marginTop: 0, marginBottom: 5, fontSize: 12 }}>{item.date}</RegularText> */}
+      <RegularText style={{ fontFamily: 'Exo', marginTop: 0, marginBottom: 5, fontSize: 12 }}>{item.createdAt}</RegularText>
     </View>
   )
 }

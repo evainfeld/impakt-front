@@ -3,7 +3,6 @@ import { StyleSheet, View } from 'react-native'
 
 // helpers:
 import navigationOptions from 'helpers/navigationOptions.js'
-import { useStore } from 'helpers/store.js'
 
 // components:
 import MainLayout from 'components/layouts/MainLayout.js'
@@ -12,7 +11,6 @@ import NewsEventsList from './NewsEventsList.js'
 
 
 const NewsEvents = ({ navigation: { navigate } }) => {
-  const { state } = useStore()
   return (
     <MainLayout>
       <View style={styles.container1}>
