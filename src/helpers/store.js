@@ -10,7 +10,7 @@ const initialState = {
   menuOpened: false,
   events: null, //orderBy(events, (e) => new Date(e.date), 'asc'),
   nextEvent: 0,
-  chatMessages: chatMessages,
+  chatMessages: null, //chatMessages,
 }
 
 replace = (state, keyToReplace, value) => {
@@ -52,6 +52,8 @@ const reducer = (state, action) => {
       return state
     case 'setActiveSlideIndex':
       return replace(state, 'activeSlideIndex', action.payload)
+    case 'setChatMessages':
+      return replace(state, 'chatMessages', action.payload)
     case 'reset': 
       return initialState
     default:
