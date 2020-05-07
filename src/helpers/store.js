@@ -54,6 +54,8 @@ const reducer = (state, action) => {
       return replace(state, 'activeSlideIndex', action.payload)
     case 'setChatMessages':
       return replace(state, 'chatMessages', action.payload)
+    case 'addChatMessage':
+      return replace(state, 'chatMessages', state.chatMessages.concat(action.payload))
     case 'reset': 
       return initialState
     default:

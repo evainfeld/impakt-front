@@ -9,6 +9,7 @@ import {
 // api:
 import { API, graphqlOperation } from 'aws-amplify'
 import { listMessage } from 'api/queries.js'
+import { onCreateMessage } from 'api/subscriptions.js'
 
 // helpers:
 import navigationOptions from 'helpers/navigationOptions.js'
@@ -38,6 +39,23 @@ const LocalChat = ({ navigation: { state: { params } } }) => {
     }
 
     getMessageList()
+  }, [])
+
+  useEffect(() => {
+    const subscription = API.graphql(
+      graphqlOperation(onCreateMessage, { convoId: "3" })
+    ).subscribe({
+      next: (res) => {
+        const newMessage = res.value.data.onCreateMessage
+        // add new message to local store
+        dispatch({
+          type: 'addChatMessage',
+          payload: newMessage
+        })
+      }
+    })
+    // unsubscribe on unmount:
+    return () => { subscription.unsubscribe() }
   }, [])
 
   const messageParams = {
