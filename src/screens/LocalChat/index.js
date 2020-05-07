@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import {
+  KeyboardAvoidingView,
+  Platform,
   StyleSheet,
-  View
+  View,
 } from 'react-native'
 
 // api:
@@ -46,10 +48,15 @@ const LocalChat = ({ navigation: { state: { params } } }) => {
     <MainLayout>
       {!nickname && <SetNickname setNickname={setNickname} />}
       {nickname && (
-        <View style={styles.flex1}>
-          <Conversation />
-          <Form />
-        </View>
+        <KeyboardAvoidingView
+          behavior={Platform.OS === "ios" ? "padding" : null}
+          style={styles.flex1}
+        >
+          <View style={styles.flex1}>
+            <Conversation style={styles.conversationBox} />
+            <Form />
+          </View>
+        </KeyboardAvoidingView>
       )}
     </MainLayout>
   )
@@ -59,6 +66,7 @@ LocalChat.navigationOptions = navigationOptions()
 
 const styles = StyleSheet.create({
   flex1: { flex: 1 },
+  conversationBox: { flex: 6 },
 })
 
 export default LocalChat

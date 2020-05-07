@@ -1,9 +1,7 @@
 import React, { useState } from 'react'
 import {
   Keyboard,
-  KeyboardAvoidingView,
   Platform,
-  ScrollView,
   StyleSheet,
   TextInput,
   TouchableWithoutFeedback,
@@ -16,40 +14,34 @@ const Form = () => {
   const [value, setValue] = useState(null)
 
   return (
-    <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-      <KeyboardAvoidingView
-        behavior={Platform.OS === "ios" ? "padding" : null}
-        style={styles.flex1}
-      >
-        <View style={styles.flex1}>
-          <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-            <View style={styles.inner}>
-              <TextInput
-                style={styles.textInput}
-                onChangeText={text => setValue(text)}
-                value={value}
-                maxLength={1000}
-                multiline
-              />
-            </View>
-          </TouchableWithoutFeedback>
-          <ButtonListItem
-            action={() => { }}
-            content={'send'}
-            theme={'dark'}
+    <View style={styles.container}>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <View style={styles.inner}>
+          <TextInput
+            style={styles.textInput}
+            onChangeText={text => setValue(text)}
+            value={value}
+            maxLength={1000}
+            multiline
           />
-          <View style={styles.flex1} />
         </View>
-      </KeyboardAvoidingView>
-    </ScrollView>
+      </TouchableWithoutFeedback>
+      <ButtonListItem
+        action={() => { }}
+        content={'send'}
+        theme={'dark'}
+      />
+      {Platform.OS === "ios" && <View style={styles.keyboardHack} />}
+    </View>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
-    flexGrow: 1
+    flexGrow: 1,
+    minHeight: 200,
   },
-  flex1: { flex: 1 },
+  keyboardHack: { minHeight: 50 },
   header: {
     marginTop: 20,
   },
@@ -66,6 +58,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffffff',
     textAlignVertical: 'top',
     maxHeight: 160,
+    minHeight: 60,
   },
 })
 

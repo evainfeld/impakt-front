@@ -21,12 +21,12 @@ const ListItem = ({ item }) => (
   </View>
 )
 
-const Conversation = () => {
+const Conversation = ({ style }) => {
   const { state } = useStore()
   const chatMessages = state.chatMessages
 
   return (
-    <View>
+    <View style={style}>
       <View style={styles.headerContainer}>
         <CustomText style={styles.headerText}>There are </CustomText>
         <CustomText style={{ ...styles.headerText, ...styles.headerCounter }}> 17 </CustomText>
