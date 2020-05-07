@@ -1,12 +1,13 @@
 import React from 'react'
 import { FlatList, StyleSheet, View } from 'react-native'
 import { format } from 'date-fns'
+import orderBy from 'lodash/orderBy'
 
 // helpers:
 import { useStore } from 'helpers/store.js'
 
 // components:
-import { HeaderRegular, CustomText } from 'components/shared/basic/index.js'
+import { CustomText } from 'components/shared/basic/index.js'
 
 // constants:
 import colors from 'constants/colors.js'
@@ -23,7 +24,7 @@ const ListItem = ({ item }) => (
 
 const Conversation = ({ style }) => {
   const { state } = useStore()
-  const chatMessages = state.chatMessages
+  const chatMessages = orderBy(state.chatMessages, ['createdAt'], ['desc'])
 
   return (
     <View style={style}>

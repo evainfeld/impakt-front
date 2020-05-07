@@ -8,10 +8,32 @@ import {
   View
 } from 'react-native'
 
+// api:
+import { API, graphqlOperation } from 'aws-amplify'
+import { createMessage } from 'api/mutations.js'
+
+// components:
 import { ButtonListItem } from 'components/shared/basic/index.js'
 
-const Form = () => {
+const Form = ({nickname}) => {
   const [value, setValue] = useState(null)
+
+  let params = {
+    input: {
+      authorId: "6e197a31-8078-46a9-a85a-b8376420ed7b", // hardcoded
+      authorNick: nickname,
+      content: value,
+      conversationId: "3", // hardcoded
+      convoId: "3", // hardcoded
+      id: "1-11190111-777005999" // hardcoded
+    }
+  }
+
+  submit = () => {
+    API.graphql(
+      graphqlOperation(createMessage, params))
+      .then(() => setValue(null))
+  }
 
   return (
     <View style={styles.container}>
@@ -27,7 +49,7 @@ const Form = () => {
         </View>
       </TouchableWithoutFeedback>
       <ButtonListItem
-        action={() => { }}
+        action={submit}
         content={'send'}
         theme={'dark'}
       />

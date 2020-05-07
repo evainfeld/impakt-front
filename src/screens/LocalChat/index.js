@@ -54,7 +54,7 @@ const LocalChat = ({ navigation: { state: { params } } }) => {
         >
           <View style={styles.flex1}>
             <Conversation style={styles.conversationBox} />
-            <Form />
+            <Form nickname={nickname} />
           </View>
         </KeyboardAvoidingView>
       )}
