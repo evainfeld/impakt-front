@@ -54,6 +54,7 @@ const LocalChat = ({ navigation: { state: { params } } }) => {
         })
       }
     })
+
     // unsubscribe on unmount:
     return () => { subscription.unsubscribe() }
   }, [])

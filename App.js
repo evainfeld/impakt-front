@@ -18,10 +18,10 @@ import { navigationRef } from 'helpers/rootNavigation.js'
 import { Platform, View } from 'react-native'
 import constants from './src/constants/general.js'
 
-import Amplify from 'aws-amplify'
+import { API } from 'aws-amplify'
 import config from './src/api/aws-exports.js'
 
-Amplify.configure(config)
+API.configure(config)
 
 const MainNavigator = createStackNavigator({
   ChooseRegion: { screen: ChooseRegion },
@@ -44,7 +44,7 @@ export default class App extends Component {
       isReady: false,
     }
   }
-  async componentWillMount() {
+  async componentDidMount() {
     await Font.loadAsync({
       // headers font:
       Exo: require('./assets/fonts/exo-2-400.ttf'),

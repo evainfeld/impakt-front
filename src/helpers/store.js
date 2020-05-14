@@ -8,11 +8,11 @@ const initialState = {
   region: null,
   numberOfUsers: Math.floor((Math.random() * 100) + 1),
   menuOpened: false,
-  events: null, //orderBy(events, (e) => new Date(e.date), 'asc'),
+  events: [], //orderBy(events, (e) => new Date(e.date), 'asc'),
   nextEvent: 0,
-  chatMessages: null, //chatMessages,
-  topics: null,
-  propagandas: null,
+  chatMessages: [], //chatMessages,
+  topics: [],
+  propagandas: [],
 }
 
 replace = (state, keyToReplace, value) => {
