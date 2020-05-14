@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import sample from 'lodash/sample';
-import without from 'lodash/without';
-import { 
+import React, { useEffect, useState } from 'react'
+import sample from 'lodash/sample'
+import without from 'lodash/without'
+import {
   Keyboard,
   KeyboardAvoidingView,
   Platform,
@@ -10,19 +10,50 @@ import {
   TextInput,
   TouchableWithoutFeedback,
   View
-} from 'react-native';
-import navigationOptions from 'helpers/navigationOptions.js'
+} from 'react-native'
 
+// api:
+import { API, graphqlOperation } from 'aws-amplify'
+import { listPropagandaByOrg } from 'api/queries.js'
+
+// helpers:
+import navigationOptions from 'helpers/navigationOptions.js'
+import { useStore } from 'helpers/store.js'
+
+// components:
 import MainLayout from 'components/layouts/MainLayout.js'
 import { HeaderRegular, DarkButton, YellowButton } from 'components/shared/basic/index.js'
 
+const propagandaParams = {
+  sortDirection: "DESC",
+  limit: "1000",
+  org: "ZZ"
+}
+
 const Messanger = (props) => {
-  const topic = props.navigation.state.params.topic;
-  const [value, onChangeText] = useState(topic.defaultMessages[0]);
+  const { dispatch, state } = useStore()
+  const topic = props.navigation.state.params.topic
+  const [value, onChangeText] = useState(null)
+
+  useEffect(() => {
+    getTopics = async () => {
+      const result = await API.graphql(graphqlOperation(listPropagandaByOrg, propagandaParams))
+      const propagandaPerCategory = result.data.listPropagandaByOrg.items
+        .filter(i => i.category === topic.name)
+        .map(i => i.content)
+      dispatch({
+        type: 'setPropagandas',
+        payload: propagandaPerCategory
+      })
+      onChangeText(propagandaPerCategory[0])
+    }
+
+    getTopics()
+  }, [])
 
   const changeDefaultMsg = () => onChangeText(
     sample(
-      without(topic.defaultMessages, value)
+      without(state.propagandas, value)
     )
   )
 
@@ -30,14 +61,14 @@ const Messanger = (props) => {
     <MainLayout>
       <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
         <KeyboardAvoidingView
-          behavior={Platform.OS === "ios" ? "padding" : null}
+          behavior={Platform.OS === 'ios' ? 'padding' : null}
           style={styles.flex1}
         >
           <View style={styles.flex1}>
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
               <View style={styles.inner}>
                 <HeaderRegular style={styles.header}>
-                  {topic.title}
+                  {topic.name}
                 </HeaderRegular>
                 <TextInput
                   style={styles.textInput}
@@ -48,10 +79,12 @@ const Messanger = (props) => {
                 />
               </View>
             </TouchableWithoutFeedback>
-            <DarkButton
-              action={changeDefaultMsg}
-              content='Pick another message'
-            />
+            {state.propagandas.length > 1 && (
+              <DarkButton
+                action={changeDefaultMsg}
+                content='Pick another message'
+              />
+            )}
             <YellowButton
               // action={}
               content='Send'
@@ -76,7 +109,7 @@ const styles = StyleSheet.create({
   },
   inner: {
     flex: 1,
-    justifyContent: "flex-end",
+    justifyContent: 'flex-end',
   },
   textInput: {
     flexGrow: 1,
@@ -88,6 +121,6 @@ const styles = StyleSheet.create({
     textAlignVertical: 'top',
     maxHeight: 140,
   },
-});
+})
 
-export default Messanger;
+export default Messanger

@@ -1,73 +1,63 @@
-import React from 'react';
-import { FlatList, StyleSheet } from 'react-native';
-import navigationOptions from 'helpers/navigationOptions.js'
+import React, { useEffect } from 'react'
+import { FlatList, StyleSheet } from 'react-native'
 
+// api:
+import { API, graphqlOperation } from 'aws-amplify'
+import { listCategory } from 'api/queries.js'
+
+// helpers:
+import navigationOptions from 'helpers/navigationOptions.js'
+import { useStore } from 'helpers/store.js'
+
+// components:
 import MainLayout from 'components/layouts/MainLayout.js'
 import { ButtonListItem, LargeText } from 'components/shared/basic/index.js'
 
-
-const TOPICS_DATA = [
-  {
-    title: 'Quality education for children',
-    defaultMessages: ['default message for Quality education for children', 'another default message', 'msg 3', 'msg 4', 'msg 5', 'msg 6']
-  },
-  {
-    title: 'Rising costs of school supplies',
-    defaultMessages: ['default message for Rising costs of school supplies', 'another default message', 'msg 3', 'msg 4', 'msg 5', 'msg 6']
-  },
-  {
-    title: 'Opposing the current government',
-    defaultMessages: ['default message for Opposing the current government', 'another default message', 'msg 3', 'msg 4', 'msg 5', 'msg 6']
-  },
-  {
-    title: 'Women rights',
-    defaultMessages: ['default message for Women rights', 'another default message', 'msg 3', 'msg 4', 'msg 5', 'msg 6']
-  },
-  {
-    title: 'Global warming',
-    defaultMessages: ['default message for Global warming', 'another default message', 'msg 3', 'msg 4', 'msg 5', 'msg 6']
-  },
-  {
-    title: 'Topic 1',
-    defaultMessages: ['default message for Topic 1', 'another default message', 'msg 3', 'msg 4', 'msg 5', 'msg 6']
-  },
-  {
-    title: 'Topic 2',
-    defaultMessages: ['default message for Topic 2', 'another', 'msg 3', 'msg 4', 'msg 5', 'msg 6']
-  },
-  {
-    title: 'Topic 3',
-    defaultMessages: ['default message for Topic 3', 'another', 'msg 3', 'msg 4', 'msg 5', 'msg 6']
-  },
-  {
-    title: 'Topic 4',
-    defaultMessages: ['default message for Topic 4', 'another', 'msg 3', 'msg 4', 'msg 5', 'msg 6']
-  },
-]
+const categoryParams = {
+  sortDirection: "DESC",
+  limit: "1000",
+}
 
 const Item = ({ title, goToMessanger }) => (
   <ButtonListItem action={goToMessanger} content={title} />
 )
 
-const Topics = ({ navigation: { navigate } }) => (
-  <MainLayout>
-    <LargeText style={styles.header}>
-      Let's convince your friends, who value:
+const Topics = ({ navigation: { navigate } }) => {
+  const { dispatch, state } = useStore()
+
+  useEffect(() => {
+    getTopics = async () => {
+      const result = await API.graphql(graphqlOperation(listCategory, categoryParams))
+      dispatch({
+        type: 'setTopics',
+        payload: result.data.listCategory.items
+      })
+    }
+
+    getTopics()
+  }, [])
+
+  return (
+    <MainLayout>
+      <LargeText style={styles.header}>
+        Let's convince your friends, who value:
     </LargeText>
-    <FlatList style={styles.listContainer}
-      data={TOPICS_DATA}
-      renderItem={({ item }) => (
-        <Item
-          title={item.title}
-          goToMessanger={
-            () => navigate('ConvinceFriendsMessanger', { topic: item })
-          }
-        />
-      )}
-      keyExtractor={item => item.title}
-    />
-  </MainLayout>
-);
+      <FlatList style={styles.listContainer}
+        data={state.topics}
+        renderItem={({ item }) => (
+          <Item
+            key={item.id}
+            title={item.name}
+            goToMessanger={
+              () => navigate('ConvinceFriendsMessanger', { topic: item })
+            }
+          />
+        )}
+        keyExtractor={item => item.id}
+      />
+    </MainLayout>
+  )
+}
 
 Topics.navigationOptions = navigationOptions()
 
@@ -86,6 +76,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     textTransform: 'uppercase',
   },
-});
+})
 
-export default Topics;
+export default Topics

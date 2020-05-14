@@ -11,6 +11,8 @@ const initialState = {
   events: null, //orderBy(events, (e) => new Date(e.date), 'asc'),
   nextEvent: 0,
   chatMessages: null, //chatMessages,
+  topics: null,
+  propagandas: null,
 }
 
 replace = (state, keyToReplace, value) => {
@@ -56,7 +58,11 @@ const reducer = (state, action) => {
       return replace(state, 'chatMessages', action.payload)
     case 'addChatMessage':
       return replace(state, 'chatMessages', state.chatMessages.concat(action.payload))
-    case 'reset': 
+    case 'setTopics':
+      return replace(state, 'topics', action.payload)
+    case 'setPropagandas':
+      return replace(state, 'propagandas', action.payload)
+    case 'reset':
       return initialState
     default:
       throw new Error(`Unhandled action type: ${action.type}`)
