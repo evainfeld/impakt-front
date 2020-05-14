@@ -59,7 +59,8 @@ const LocalChat = ({ navigation: { state: { params } } }) => {
   }, [])
 
   const messageParams = {
-    sortDirection: "DESC"
+    sortDirection: "DESC",
+    limit: "1000",
   }
 
   return (
