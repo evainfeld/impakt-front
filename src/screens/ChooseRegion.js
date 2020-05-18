@@ -17,7 +17,7 @@ import colors from 'constants/colors'
 const ChooseRegion = ({ navigation: { navigate } }) => {
   const { dispatch } = useStore()
   const [selectedValue, setSelectedValue] = useState(false)
-  const [locations, setLocations] = useState([])
+  const [locations, setLocations] = useState(null)
 
   useEffect(() => {
     getLocationList = async () => {
@@ -25,7 +25,30 @@ const ChooseRegion = ({ navigation: { navigate } }) => {
       setLocations(result.data.listLocation.items)
     }
 
-    getLocationList()
+    SecureStore.getItemAsync('region')
+      .then((region) => {
+        if (region) {
+          // fetch events for region
+          API.graphql(graphqlOperation(listEvent, {
+            org: 'ZZ',
+            sortDirection: 'ASC'
+          })).then((res) => {
+            dispatch({
+              type: 'setEvents',
+              payload: res.data.listEvent.items
+            })
+          }).then(() => {
+            dispatch({
+              type: 'setRegion',
+              payload: region
+            })
+            navigate('MenuScreen')
+          })
+        } else {
+          // get location list if there is no stored region
+          getLocationList()
+        }
+      }).catch((err) => console.log("ERROR", err))
   }, [])
 
   const locationParams = {
