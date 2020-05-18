@@ -42,7 +42,7 @@ const ChooseRegion = (
           }).then(() => {
             dispatch({
               type: 'setRegion',
-              payload: region
+              payload: JSON.parse(region)
             })
             navigate('MenuScreen')
           })
