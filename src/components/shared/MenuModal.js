@@ -43,7 +43,7 @@ const MenuModal = () => {
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            <MenuItem title='Change Region' screenName='ChooseRegion' />
+            <MenuItem title='Change Region' screenName='ChooseRegion' params={{ changeCurrentRegion: true }} />
             <MenuItem title='Get Involved' screenName='GetInvolved' />
             <MenuItem title='Convince Friends' screenName='ConvinceFriendsTopics' />
             <MenuItem title='News & Events' screenName='NewsEvents' />

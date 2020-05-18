@@ -14,7 +14,9 @@ import { RegularButton, HeaderYellow } from 'components/shared/basic/index.js'
 // constants:
 import colors from 'constants/colors'
 
-const ChooseRegion = ({ navigation: { navigate } }) => {
+const ChooseRegion = (
+  { navigation: { navigate, state: { params } } }
+) => {
   const { dispatch } = useStore()
   const [selectedValue, setSelectedValue] = useState(false)
   const [locations, setLocations] = useState(null)
@@ -50,6 +52,20 @@ const ChooseRegion = ({ navigation: { navigate } }) => {
         }
       }).catch((err) => console.log("ERROR", err))
   }, [])
+
+  useEffect(() => {
+    SecureStore.getItemAsync('region')
+      .then((region) => { 
+        setSelectedValue(JSON.parse(region).name)
+      })
+    // get location list if the user comes to change the location:
+    getLocationList = async () => {
+      const result = await API.graphql(graphqlOperation(listLocation, locationParams))
+      setLocations(result.data.listLocation.items)
+    }
+
+    params && params.changeCurrentRegion && getLocationList()
+  }, [params])
 
   const locationParams = {
     // should be based on organization (TODO)
