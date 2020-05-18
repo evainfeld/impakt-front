@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import { Picker, Platform, StyleSheet, View } from 'react-native'
 import find from 'lodash/find'
-import { useStore } from 'helpers/store.js'
-
+import * as SecureStore from 'expo-secure-store'
+// api:
 import { API, graphqlOperation } from 'aws-amplify'
 import { listEvent, listLocation } from 'api/queries.js'
-
+// helpers:
+import { useStore } from 'helpers/store.js'
+import navigationOptions from 'helpers/navigationOptions.js'
+// components:
 import MainLayout from 'components/layouts/MainLayout.js'
 import { RegularButton, HeaderYellow } from 'components/shared/basic/index.js'
-import navigationOptions from 'helpers/navigationOptions.js'
+// constants:
 import colors from 'constants/colors'
 
 const ChooseRegion = ({ navigation: { navigate } }) => {
@@ -45,11 +48,13 @@ const ChooseRegion = ({ navigation: { navigate } }) => {
       // region: {
       //   beginsWith: region.region // beginWith does not work :(
       // },
-    })).then((res) => { 
+    })).then((res) => {
       dispatch({
         type: 'setEvents',
         payload: res.data.listEvent.items
       })
+    }).then(() => {
+      SecureStore.setItemAsync('region', JSON.stringify(region))
     }).then(() => {
       dispatch({
         type: 'setRegion',
@@ -80,7 +85,7 @@ const ChooseRegion = ({ navigation: { navigate } }) => {
         <HeaderYellow>We do not collect your data.</HeaderYellow>
       </View>}
     </MainLayout>
-  ) 
+  )
 }
 
 ChooseRegion.navigationOptions = () => navigationOptions('Choose region', false)
