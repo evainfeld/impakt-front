@@ -16,6 +16,11 @@ import { ButtonListItem, LargeText } from 'components/shared/basic/index.js'
 const categoryParams = {
   sortDirection: "DESC",
   limit: "1000",
+  // this is needed but does not work:
+  // region: {
+  //   beginWith: "ZZ::PL"
+  // },
+  org: "ZZ"
 }
 
 const Item = ({ title, goToMessanger }) => (

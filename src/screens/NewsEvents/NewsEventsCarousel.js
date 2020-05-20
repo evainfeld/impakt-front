@@ -5,28 +5,26 @@ import {
   SafeAreaView,
   View,
 } from 'react-native'
-import { differenceInSeconds } from 'date-fns'
+import { differenceInSeconds, format } from 'date-fns'
 import CountDown from 'react-native-countdown-component'
 
 // helpers:
 import { useStore } from 'helpers/store.js'
 
 // components:
-import { CustomText, HeaderRegular, RegularText } from 'components/shared/basic/index.js'
+import { HeaderRegular, RegularText } from 'components/shared/basic/index.js'
 
 // constants:
 import constants from 'constants/general'
 const { width: screenWidth } = Dimensions.get('window')
 
 const Counter = ({ event }) => {
-  // const date = new Date(event.date)
-  const date = new Date(event.createdAt)
+  const date = new Date(event.whenDate)
   const timeNow = new Date()
   return (
     <CountDown
       size={16}
-      until={500}
-      // until={differenceInSeconds(date, timeNow)}
+      until={differenceInSeconds(date, timeNow)}
       style={{ marginTop: -10 }}
       digitStyle={{ backgroundColor: 'transparent', marginTop: 2, marginLeft: -4, marginRight: -4 }}
       digitTxtStyle={{ color: 'yellow', fontFamily: 'Exo' }}
@@ -41,8 +39,7 @@ const Counter = ({ event }) => {
 
 const CarouselCard = ({ item, index }) => {
   const { state: { activeSlideIndex } } = useStore()
-  // const isComingEvent = new Date(item.date) > new Date
-  const isComingEvent = new Date(item.createdAt) > new Date("2020-02-25T14:08:48.810Z")
+  const isComingEvent = new Date(item.whenDate) > new Date
   isActive = activeSlideIndex === index
 
   return (
@@ -59,11 +56,9 @@ const CarouselCard = ({ item, index }) => {
       {isActive && isComingEvent && <Counter event={item} />}
 
       <HeaderRegular style={{ fontFamily: 'Exo', marginTop: 0, marginBottom: 5, fontSize: 16 }}>{item.title}</HeaderRegular>
-      {/* <RegularText style={{ fontFamily: 'Exo', marginTop: 0, marginBottom: 5, fontSize: 14 }}>{item.street}, {item.city}</RegularText> */}
       <RegularText style={{ fontFamily: 'Exo', marginTop: 0, marginBottom: 5, fontSize: 14 }}>{item.content}</RegularText>
       <RegularText style={{ fontFamily: 'Exo', marginTop: 0, marginBottom: 5, fontSize: 12 }}>{item.region}</RegularText>
-      {/* <RegularText style={{ fontFamily: 'Exo', marginTop: 0, marginBottom: 5, fontSize: 12 }}>{item.date}</RegularText> */}
-      <RegularText style={{ fontFamily: 'Exo', marginTop: 0, marginBottom: 5, fontSize: 12 }}>{item.createdAt}</RegularText>
+      <RegularText style={{ fontFamily: 'Exo', marginTop: 0, marginBottom: 5, fontSize: 12 }}>{format(new Date(item.whenDate), 'MM/dd/yy (kk:mm)')}</RegularText>
     </View>
   )
 }

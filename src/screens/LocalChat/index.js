@@ -62,6 +62,10 @@ const LocalChat = ({ navigation: { state: { params } } }) => {
   const messageParams = {
     sortDirection: "DESC",
     limit: "1000",
+    region: "ZZ"
+    // region: {
+    //   beginWith: "ZZ::PL::WAW::ZOLIBORZ"
+    // }
   }
 
   return (

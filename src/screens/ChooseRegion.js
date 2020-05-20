@@ -21,6 +21,20 @@ const ChooseRegion = (
   const [selectedValue, setSelectedValue] = useState(false)
   const [locations, setLocations] = useState(null)
 
+  setEvents = (events) => (
+    dispatch({
+      type: 'setEvents',
+      payload: events
+    })
+  )
+
+  setRegion = (region) => (
+    dispatch({
+      type: 'setRegion',
+      payload: region
+    })
+  )
+
   useEffect(() => {
     getLocationList = async () => {
       const result = await API.graphql(graphqlOperation(listLocation, locationParams))
@@ -34,19 +48,23 @@ const ChooseRegion = (
           API.graphql(graphqlOperation(listEvent, {
             org: 'ZZ',
             sortDirection: 'ASC'
+            // region: "ZZ::PL::WAW::BIELANY" // region: { beginWith: region.name } // does not work beginWith :(
           })).then((res) => {
-            dispatch({
-              type: 'setEvents',
-              payload: res.data.listEvent.items
-            })
+            setEvents(res.data.listEvent.items)
           }).then(() => {
-            dispatch({
-              type: 'setRegion',
-              payload: JSON.parse(region)
-            })
+            setRegion(JSON.parse(region))
             navigate('MenuScreen')
+          }).catch((res) => {
+            // the response is thrown with the errors - shouldn't be like that
+            if (res.data.listEvent.items) {
+              setEvents(res.data.listEvent.items)
+              setRegion(JSON.parse(region))
+              navigate('MenuScreen')
+            }
+            console.log("res.errors", res.errors)
           })
         } else {
+          console.log("NO REGION :(")
           // get location list if there is no stored region
           getLocationList()
         }
@@ -55,8 +73,8 @@ const ChooseRegion = (
 
   useEffect(() => {
     SecureStore.getItemAsync('region')
-      .then((region) => { 
-        setSelectedValue(JSON.parse(region).name)
+      .then((region) => {
+        region && setSelectedValue(JSON.parse(region).name)
       })
     // get location list if the user comes to change the location:
     getLocationList = async () => {
@@ -88,18 +106,21 @@ const ChooseRegion = (
       //   beginsWith: region.region // beginWith does not work :(
       // },
     })).then((res) => {
-      dispatch({
-        type: 'setEvents',
-        payload: res.data.listEvent.items
-      })
+      setEvents(res.data.listEvent.items)
     }).then(() => {
       SecureStore.setItemAsync('region', JSON.stringify(region))
     }).then(() => {
-      dispatch({
-        type: 'setRegion',
-        payload: region
-      })
+      setRegion(region)
       navigate('MenuScreen')
+    }).catch((res) => {
+      // the response is thrown with the errors - shouldn't be like that
+      if (res.data.listEvent.items) {
+        setEvents(res.data.listEvent.items)
+        SecureStore.setItemAsync('region', JSON.stringify(region))
+        setRegion(region)
+        navigate('MenuScreen')
+      }
+      // console.log("submit res.errors", res.errors)
     })
   }
 

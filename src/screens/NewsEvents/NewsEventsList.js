@@ -33,8 +33,6 @@ const ListItem = ({ event, index }) => {
         </View>
         <View style={[styles.row, styles.containerLocation]}>
           <RegularText style={styles.location}>{event.content} </RegularText>
-          {/* <RegularText style={styles.location}>{event.city} </RegularText> */}
-          {/* <RegularText style={styles.location}>({event.region})</RegularText> */}
         </View>
       </View>
     </TouchableWithoutFeedback>
@@ -42,8 +40,7 @@ const ListItem = ({ event, index }) => {
 }
 
 const Time = ({ event }) => {
-  // const rawDate = new Date(event.date)
-  const rawDate = new Date(event.createdAt)
+  const rawDate = new Date(event.whenDate)
   const formatDate = format(rawDate, 'MM.dd')
   const formatTime = format(rawDate, 'kk:mm')
   return (

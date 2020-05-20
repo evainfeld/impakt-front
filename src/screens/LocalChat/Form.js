@@ -23,8 +23,8 @@ const Form = ({nickname}) => {
       authorId: "6e197a31-8078-46a9-a85a-b8376420ed7b", // hardcoded
       authorNick: nickname,
       content: value,
-      conversationId: "3", // hardcoded
-      convoId: "3", // hardcoded
+      conversationId: "1", // hardcoded
+      convoId: "1", // hardcoded
       id: "1-11190111-777005999" // hardcoded
     }
   }
