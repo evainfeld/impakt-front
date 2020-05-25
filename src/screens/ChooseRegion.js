@@ -61,10 +61,8 @@ const ChooseRegion = (
               setRegion(JSON.parse(region))
               navigate('MenuScreen')
             }
-            console.log("res.errors", res.errors)
           })
         } else {
-          console.log("NO REGION :(")
           // get location list if there is no stored region
           getLocationList()
         }
@@ -120,7 +118,6 @@ const ChooseRegion = (
         setRegion(region)
         navigate('MenuScreen')
       }
-      // console.log("submit res.errors", res.errors)
     })
   }
 

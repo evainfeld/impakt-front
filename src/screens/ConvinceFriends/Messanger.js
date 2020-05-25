@@ -6,6 +6,7 @@ import {
   KeyboardAvoidingView,
   Platform,
   ScrollView,
+  Share,
   StyleSheet,
   TextInput,
   TouchableWithoutFeedback,
@@ -57,6 +58,29 @@ const Messanger = (props) => {
     )
   )
 
+  onSubmit = async () => {
+    try {
+      const result = await Share.share({
+        message: value,
+      })
+
+      if (result.action === Share.sharedAction) {
+        if (result.activityType) {
+          console.log("activityType", result.activityType)
+          // shared with activity type of result.activityType
+        } else {
+          console.log("shared")
+          // shared
+        }
+      } else if (result.action === Share.dismissedAction) {
+        console.log("dismissed")
+        // dismissed
+      }
+    } catch (error) {
+      alert(error.message);
+    }
+  }
+
   return (
     <MainLayout>
       <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
@@ -86,8 +110,9 @@ const Messanger = (props) => {
               />
             )}
             <YellowButton
-              // action={}
+              action={onSubmit}
               content='Send'
+              disabled={!value}
             />
             <View style={styles.flex1} />
           </View>
