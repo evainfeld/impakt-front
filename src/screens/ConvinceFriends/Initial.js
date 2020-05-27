@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import MainLayout from 'components/layouts/MainLayout.js'
-import { RegularButton, RegularText, HeaderYellow } from 'components/shared/basic/index.js'
+import { RegularButton, RegularText, HeaderYellow , HeaderRegular} from 'components/shared/basic/index.js'
 import navigationOptions from 'helpers/navigationOptions.js'
 
 const Initial = ({ navigation: { navigate } }) => (
@@ -22,8 +22,8 @@ const Initial = ({ navigation: { navigate } }) => (
         content="Let's do it"
         style={styles.button}
       />
-      <HeaderYellow>We do not collect your data.</HeaderYellow>
-      <HeaderYellow>What you do here is between you and your friends.</HeaderYellow>
+      <RegularText>We do not collect your data.</RegularText>
+      <RegularText>What you do here is between you and your friends.</RegularText>
     </View>
   </MainLayout>
 );

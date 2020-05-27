@@ -21,6 +21,8 @@ DerivedData
 *.ipa
 *.xcuserstate
 xcshareddata
+#asdf version control
+.tool-versions
 
 # Android/IntelliJ
 #
