@@ -9,10 +9,15 @@ import {
   TouchableWithoutFeedback,
   View
 } from 'react-native'
+// api:
+import { API, graphqlOperation } from 'aws-amplify'
+import { notifyCoordinator } from 'api/mutations.js'
 
-import navigationOptions from 'helpers/navigationOptions.js'
+// helpers:
 import { useStore } from 'helpers/store.js'
+import navigationOptions from 'helpers/navigationOptions.js'
 
+// components:
 import MainLayout from 'components/layouts/MainLayout.js'
 import {
   ErrorMessage,
@@ -29,7 +34,7 @@ const ContactCoordinator = ({ navigation: { navigate } }) => {
   const [isValid, setIsValid] = useState(false)
   const [errorMessage, setErrorMessage] = useState(null)
 
-  const { state: { region: { coordinatorName } } } = useStore()
+  const { state: { region: { coordinatorName, coordinatorEmail } } } = useStore()
 
   clearFieldsValues = () => {
     setIsValid(false)
@@ -59,14 +64,30 @@ const ContactCoordinator = ({ navigation: { navigate } }) => {
     }
     return
   }
+  const notifyCoordinatorInput = {
+    input: {
+      currentNick: userContact,
+      contactDetails: userContact,
+      coordinatorEmail: coordinatorEmail,
+      msg: optionalMessage || ''
+    }
+  }
 
   onSumbit = () => {
     setWasSubmitted(true)
     validateContact(userContact)
     if (isValid) {
-      // TODO - send the message with user's contact to the coordinator
-      setConfirmationMessage('Your request was sent to the coordinator')
-      clearFieldsValues()
+      API.graphql(
+        graphqlOperation(notifyCoordinator, notifyCoordinatorInput))
+        .then((res) => {
+          console.log("response", res)
+          setConfirmationMessage('Your request was sent to the coordinator')
+          clearFieldsValues()
+        }).catch(err => {
+          console.log("error", err)
+          setConfirmationMessage('Something went wrong :(')
+          // TODO: fix the bug => error from API: Variable 'currentNick' has coerced Null value for NonNull type 'String!
+        })
     } else {
       setErrorMessage('Please write correct email or phone')
     }
