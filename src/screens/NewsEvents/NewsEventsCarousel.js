@@ -82,7 +82,7 @@ const NewsEventsCarousel = () => {
           data={events}
           containerCustomStyle={{ flexGrow: 0 }}
           sliderWidth={screenWidth - (2 * constants.mainPadding)}
-          itemWidth={screenWidth - (2 * constants.mainPadding) - 80} // 80 is to make previous & next event's cards visible 
+          itemWidth={screenWidth - (2 * constants.mainPadding) - 80} // -80 is to make previous & next event's cards visible 
           renderItem={(props) => <CarouselCard {...props} />}
           onBeforeSnapToItem={(slideIndex) => {
             dispatch({

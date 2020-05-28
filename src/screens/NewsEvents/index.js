@@ -10,18 +10,16 @@ import NewsEventsCarousel from './NewsEventsCarousel'
 import NewsEventsList from './NewsEventsList.js'
 
 
-const NewsEvents = ({ navigation: { navigate } }) => {
-  return (
-    <MainLayout>
-      <View style={styles.container1}>
-        <NewsEventsCarousel />
-      </View>
-      <View style={styles.container2}>
-        <NewsEventsList />
-      </View>
-    </MainLayout>
-  )
-}
+const NewsEvents = () => (
+  <MainLayout>
+    <View style={styles.container1}>
+      <NewsEventsCarousel />
+    </View>
+    <View style={styles.container2}>
+      <NewsEventsList />
+    </View>
+  </MainLayout>
+)
 
 NewsEvents.navigationOptions = navigationOptions()
 

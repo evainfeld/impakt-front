@@ -1,6 +1,4 @@
 import React, { createContext, useContext, useReducer } from 'react'
-import events from './dummyData/mockedNewsAndEvents.json' // mocking data with https://mockaroo.com/
-import chatMessages from './dummyData/dummyMessage.json'
 import orderBy from 'lodash/orderBy'
 
 const StoreContext = createContext()
@@ -8,9 +6,9 @@ const initialState = {
   region: null,
   numberOfUsers: Math.floor((Math.random() * 100) + 1),
   menuOpened: false,
-  events: [], //orderBy(events, (e) => new Date(e.date), 'asc'),
+  events: [],
   nextEvent: 0,
-  chatMessages: [], //chatMessages,
+  chatMessages: [],
   topics: [],
   propagandas: [],
 }
@@ -31,17 +29,6 @@ findNextEventIndex = (eventsInRegion) => {
 const reducer = (state, action) => {
   switch (action.type) {
     case 'setRegion':
-      // // find & order all events in region:
-      // const eventsInRegion = orderBy(
-      //   events.filter(
-      //     (e) => e.region === action.payload.name
-      //   ), (e) => new Date(e.date), 'asc')
-      // // add events to the state:
-      // let tempState = replace(state, 'events', eventsInRegion)
-      // // find and add next coming event
-      // tempState = replace(tempState, 'nextEvent', findNextEventIndex(eventsInRegion))
-      // tempState = replace(tempState, 'activeSlideIndex', findNextEventIndex(eventsInRegion))
-      // return replace(tempState, 'region', action.payload)
       return replace(state, 'region', action.payload)
     case 'setEvents':
       return replace(state, 'events', action.payload)

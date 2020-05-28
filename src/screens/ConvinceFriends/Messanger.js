@@ -26,8 +26,7 @@ import MainLayout from 'components/layouts/MainLayout.js'
 import { HeaderRegular, DarkButton, YellowButton } from 'components/shared/basic/index.js'
 
 const propagandaParams = {
-  sortDirection: "DESC",
-  limit: "1000",
+  limit: 100,
   org: "ZZ"
 }
 
