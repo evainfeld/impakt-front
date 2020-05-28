@@ -1,31 +1,40 @@
 import React, { Component } from 'react'
 import * as Font from 'expo-font'
-import { StoreProvider } from './src/helpers/store.js'
-import ChooseRegion from './src/screens/ChooseRegion'
-import MenuScreen from './src/screens/MenuScreen'
-import ContactCoordinator from './src/screens/GetInvolved/ContactCoordinator'
-import ConvinceFriendsInitial from './src/screens/ConvinceFriends/Initial'
-import ConvinceFriendsTopics from './src/screens/ConvinceFriends/Topics'
-import ConvinceFriendsMessanger from './src/screens/ConvinceFriends/Messanger'
-import GetInvolved from './src/screens/GetInvolved/index.js'
-import NewsEvents from './src/screens/NewsEvents/index.js'
-import LocalChat from './src/screens/LocalChat/index.js'
-import MenuModal from './src/components/shared/MenuModal.js'
-
 import { createAppContainer } from 'react-navigation'
 import { createStackNavigator } from 'react-navigation-stack'
-import { navigationRef } from 'helpers/rootNavigation.js'
 import { Platform, View } from 'react-native'
-import constants from './src/constants/general.js'
+import * as SecureStore from 'expo-secure-store'
 
+// API:
 import { API } from 'aws-amplify'
-import config from './src/api/aws-exports.js'
+import config from 'api/aws-exports.js'
+
+// helpers:
+import { navigationRef } from 'helpers/rootNavigation.js'
+import { StoreProvider } from 'helpers/store.js'
+
+// screens:
+import ChooseRegion from 'screens/ChooseRegion'
+import MenuScreen from 'screens/MenuScreen'
+import ContactCoordinator from 'screens/GetInvolved/ContactCoordinator'
+import ConvinceFriendsInitial from 'screens/ConvinceFriends/Initial'
+import ConvinceFriendsTopics from 'screens/ConvinceFriends/Topics'
+import ConvinceFriendsMessanger from 'screens/ConvinceFriends/Messanger'
+import GetInvolved from 'screens/GetInvolved/index.js'
+import NewsEvents from 'screens/NewsEvents/index.js'
+import LocalChat from 'screens/LocalChat/index.js'
+
+// components:
+import MenuModal from 'components/shared/MenuModal.js'
+import MainLayout from 'components/layouts/MainLayout.js'
+
+// constants
+import constants from 'constants/general.js'
 
 API.configure(config)
 
-const MainNavigator = createStackNavigator({
-  ChooseRegion: { screen: ChooseRegion },
-  MenuScreen: { screen: MenuScreen },
+const MainNavigator = ({ isThatFirstVisit }) => createStackNavigator({
+  Welcome: { screen: isThatFirstVisit ? ChooseRegion : MenuScreen },
   GetInvolved: { screen: GetInvolved },
   ConvinceFriendsInitial: { screen: ConvinceFriendsInitial },
   ConvinceFriendsTopics: { screen: ConvinceFriendsTopics },
@@ -33,15 +42,19 @@ const MainNavigator = createStackNavigator({
   NewsEvents: { screen: NewsEvents },
   LocalChat: { screen: LocalChat },
   ContactCoordinator: { screen: ContactCoordinator },
+  ChooseRegion: { screen: ChooseRegion },
+  MenuScreen: { screen: MenuScreen },
 }, { headerLayoutPreset: 'center' })
 
-const AppWithNav = createAppContainer(MainNavigator)
+const AppWithNavFirstVisit = createAppContainer(MainNavigator({ isThatFirstVisit: true }))
+const AppWithNavNextVisit = createAppContainer(MainNavigator({ isThatFirstVisit: false }))
 
 export default class App extends Component {
   constructor() {
     super()
     this.state = {
       isReady: false,
+      isRegionSaved: false,
     }
   }
   async componentDidMount() {
@@ -61,17 +74,23 @@ export default class App extends Component {
       // icon font:
       Ionicons: require('./assets/fonts/Ionicons.ttf'),
     })
+    // check region
+    const region = await SecureStore.getItemAsync('region')
+    if (region) { this.setState({ isRegionSaved: true }) }
+
     this.setState({ isReady: true })
   }
 
   render() {
-    if (!this.state.isReady) return null // TODO: loading screen
+    if (!this.state.isReady) return <MainLayout /> // TODO: loading screen
 
     return (
       <StoreProvider>
         {Platform.OS === 'ios' && <View style={{ height: constants.iOsSystemBarHeight, backgroundColor: '#c2c4cf' }} />}
         <MenuModal />
-        <AppWithNav ref={navigationRef} />
+        {this.state.isRegionSaved ?
+          <AppWithNavNextVisit ref={navigationRef} />
+          : <AppWithNavFirstVisit ref={navigationRef} />}
       </StoreProvider>
     )
   }

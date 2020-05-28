@@ -1,12 +1,73 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { View, StyleSheet } from 'react-native'
-import navigationOptions from 'helpers/navigationOptions.js'
+import * as SecureStore from 'expo-secure-store'
 
+// api:
+import { API, graphqlOperation } from 'aws-amplify'
+import { listEvent } from 'api/queries.js'
+
+// helpers:
+import navigationOptions from 'helpers/navigationOptions.js'
+import { useStore } from 'helpers/store.js'
+
+// components:
 import MainLayout from 'components/layouts/MainLayout.js'
 import { ButtonListItem } from 'components/shared/basic/index.js'
 
 const MenuScreen = ({ navigation }) => {
-  const { navigate } = navigation;
+  const { navigate } = navigation
+  const { dispatch, state: { region } } = useStore()
+
+  setEvents = (events) => (
+    dispatch({
+      type: 'setEvents',
+      payload: events
+    })
+  )
+
+  setRegion = (region) => (
+    dispatch({
+      type: 'setRegion',
+      payload: region
+    })
+  )
+
+  eventParams = region => {
+    return {
+      filter: {
+        region: {
+          beginsWith: region
+        }
+      },
+      limit: 1000
+    }
+  }
+
+  useEffect(() => {
+    // fetch events for region
+    fetchEvents = (obj) => API.graphql(graphqlOperation(listEvent, eventParams(obj.region)))
+      .then((res) => {
+        if (res.data.listEvent.items) {
+          setEvents(res.data.listEvent.items)
+        }
+      }).catch((res) => {
+        // the response is thrown with the errors - shouldn't be like that
+        console.log("res catched", res)
+        if (res.data.listEvent.items) {
+          setEvents(res.data.listEvent.items)
+        }
+      })
+    if (region) {
+      fetchEvents(region)
+    } else {
+      SecureStore.getItemAsync('region')
+        .then((res) => {
+          setRegion(JSON.parse(res))
+          fetchEvents(JSON.parse(res))
+        }).catch((err) => console.log("ERROR", err))
+    }
+  }, [])
+
   return (
     <MainLayout>
       <View style={styles.container}>

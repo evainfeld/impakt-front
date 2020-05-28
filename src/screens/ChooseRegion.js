@@ -4,7 +4,7 @@ import find from 'lodash/find'
 import * as SecureStore from 'expo-secure-store'
 // api:
 import { API, graphqlOperation } from 'aws-amplify'
-import { listEvent, listLocation } from 'api/queries.js'
+import { listLocation } from 'api/queries.js'
 // helpers:
 import { useStore } from 'helpers/store.js'
 import navigationOptions from 'helpers/navigationOptions.js'
@@ -21,13 +21,6 @@ const ChooseRegion = (
   const [selectedValue, setSelectedValue] = useState(false)
   const [locations, setLocations] = useState(null)
 
-  setEvents = (events) => (
-    dispatch({
-      type: 'setEvents',
-      payload: events
-    })
-  )
-
   setRegion = (region) => (
     dispatch({
       type: 'setRegion',
@@ -41,32 +34,7 @@ const ChooseRegion = (
       setLocations(result.data.listLocation.items)
     }
 
-    SecureStore.getItemAsync('region')
-      .then((region) => {
-        if (region) {
-          // fetch events for region
-          API.graphql(graphqlOperation(listEvent, {
-            org: 'ZZ',
-            sortDirection: 'ASC'
-            // region: "ZZ::PL::WAW::BIELANY" // region: { beginWith: region.name } // does not work beginWith :(
-          })).then((res) => {
-            setEvents(res.data.listEvent.items)
-          }).then(() => {
-            setRegion(JSON.parse(region))
-            navigate('MenuScreen')
-          }).catch((res) => {
-            // the response is thrown with the errors - shouldn't be like that
-            if (res.data.listEvent.items) {
-              setEvents(res.data.listEvent.items)
-              setRegion(JSON.parse(region))
-              navigate('MenuScreen')
-            }
-          })
-        } else {
-          // get location list if there is no stored region
-          getLocationList()
-        }
-      }).catch((err) => console.log("ERROR", err))
+    getLocationList()
   }, [])
 
   useEffect(() => {
@@ -74,50 +42,20 @@ const ChooseRegion = (
       .then((region) => {
         region && setSelectedValue(JSON.parse(region).name)
       })
-    // get location list if the user comes to change the location:
-    getLocationList = async () => {
-      const result = await API.graphql(graphqlOperation(listLocation, locationParams))
-      setLocations(result.data.listLocation.items)
-    }
-
-    params && params.changeCurrentRegion && getLocationList()
   }, [params])
 
   const locationParams = {
     // should be based on organization (TODO)
     org: 'ZZ',
-    region: {
-      beginsWith: 'ZZ::PL::WAW'
-    },
-    limit: 100,
-    nextToken: null,
+    limit: 1000,
     sortDirection: 'ASC'
   }
 
   const submit = () => {
     const region = find(locations, (i) => i.name === selectedValue)
-    API.graphql(graphqlOperation(listEvent, {
-      org: 'ZZ',
-      sortDirection: 'ASC'
-      // region: region.region
-      // region: {
-      //   beginsWith: region.region // beginWith does not work :(
-      // },
-    })).then((res) => {
-      setEvents(res.data.listEvent.items)
-    }).then(() => {
-      SecureStore.setItemAsync('region', JSON.stringify(region))
-    }).then(() => {
+    SecureStore.setItemAsync('region', JSON.stringify(region)).then(() => {
       setRegion(region)
       navigate('MenuScreen')
-    }).catch((res) => {
-      // the response is thrown with the errors - shouldn't be like that
-      if (res.data.listEvent.items) {
-        setEvents(res.data.listEvent.items)
-        SecureStore.setItemAsync('region', JSON.stringify(region))
-        setRegion(region)
-        navigate('MenuScreen')
-      }
     })
   }
 
@@ -145,7 +83,7 @@ const ChooseRegion = (
   )
 }
 
-ChooseRegion.navigationOptions = () => navigationOptions('Choose region', false)
+ChooseRegion.navigationOptions = () => navigationOptions('', false)
 
 const styles = StyleSheet.create({
   button: {
