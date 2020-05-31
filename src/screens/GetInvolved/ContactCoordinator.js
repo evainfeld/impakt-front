@@ -80,11 +80,9 @@ const ContactCoordinator = ({ navigation: { navigate } }) => {
       API.graphql(
         graphqlOperation(notifyCoordinator, notifyCoordinatorInput))
         .then((res) => {
-          console.log("response", res)
           setConfirmationMessage('Your request was sent to the coordinator')
           clearFieldsValues()
         }).catch(err => {
-          console.log("error", err)
           setConfirmationMessage('Something went wrong :(')
           // TODO: fix the bug => error from API: Variable 'currentNick' has coerced Null value for NonNull type 'String!
         })

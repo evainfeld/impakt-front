@@ -41,7 +41,7 @@ const CarouselCard = ({ item, index }) => {
   const { state: { activeSlideIndex } } = useStore()
   const isComingEvent = new Date(item.whenDate) > new Date
   isActive = activeSlideIndex === index
-
+  
   return (
     <View style={{
       backgroundColor: isComingEvent ? 'blue' : 'transparent',
@@ -66,14 +66,24 @@ const CarouselCard = ({ item, index }) => {
 const NewsEventsCarousel = () => {
   const { state, dispatch } = useStore()
   const events = state.events
+  const CAROUSEL_WIDTH = screenWidth - (2 * constants.mainPadding)
+  const CARD_WIDTH = (CAROUSEL_WIDTH - 80) // -80 is to make previous & next event's cards visible 
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', }}>
         <Carousel
           layout={'default'}
+          useScrollView={true} // flatList causes a buggy behavior
+          activeSlideOffset={0}
           apparitionDelay={220}
-          firstItem={state.nextEvent}
+          firstItem={state.activeSlideIndex}
+          initialScrollIndex={state.activeSlideIndex}
+          getItemLayout={(data, index) => ({
+            length: CARD_WIDTH,
+            offset: CARD_WIDTH * index,
+            index,
+          })}
           ref={ref => {
             if (!state.eventCarouselRef) {
               dispatch({ type: 'setEventCarouselRef', payload: ref })
@@ -81,8 +91,8 @@ const NewsEventsCarousel = () => {
           }}
           data={events}
           containerCustomStyle={{ flexGrow: 0 }}
-          sliderWidth={screenWidth - (2 * constants.mainPadding)}
-          itemWidth={screenWidth - (2 * constants.mainPadding) - 80} // -80 is to make previous & next event's cards visible 
+          sliderWidth={CAROUSEL_WIDTH}
+          itemWidth={CARD_WIDTH}
           renderItem={(props) => <CarouselCard {...props} />}
           onBeforeSnapToItem={(slideIndex) => {
             dispatch({

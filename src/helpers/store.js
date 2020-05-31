@@ -4,13 +4,16 @@ import orderBy from 'lodash/orderBy'
 const StoreContext = createContext()
 const initialState = {
   region: null,
-  numberOfUsers: Math.floor((Math.random() * 100) + 1),
+  numberOfUsers: Math.floor((Math.random() * 100) + 1), // TODO on backend
   menuOpened: false,
   events: [],
-  nextEvent: 0,
   chatMessages: [],
   topics: [],
   propagandas: [],
+  // events carousel:
+  nextEvent: 0,
+  eventCarouselRef: null,
+  activeSlideIndex: 0,
 }
 
 replace = (state, keyToReplace, value) => {
@@ -21,9 +24,13 @@ replace = (state, keyToReplace, value) => {
   }
 }
 
-findNextEventIndex = (eventsInRegion) => {
+findNextEventIndex = (events) => {
   const now = new Date
-  return eventsInRegion.findIndex((e) => (new Date(e.date) > now))
+  const orderedEvents = orderBy(events, (e) => new Date(e.whenDate), 'asc')
+  const index = orderedEvents.findIndex((e) => {
+    return (new Date(e.whenDate)) > now 
+  })
+  return (index > 0) ? index : 0
 }
 
 const reducer = (state, action) => {
@@ -31,7 +38,10 @@ const reducer = (state, action) => {
     case 'setRegion':
       return replace(state, 'region', action.payload)
     case 'setEvents':
-      return replace(state, 'events', action.payload)
+      const nextEvent = findNextEventIndex(action.payload)
+      let tempState = replace(state, 'nextEvent', nextEvent)
+      tempState = replace(tempState, 'activeSlideIndex', nextEvent)
+      return replace(tempState, 'events', orderBy(action.payload, (e) => new Date(e.whenDate), 'asc'))
     case 'toggleMenu':
       return replace(state, 'menuOpened', !state.menuOpened)
     case 'setEventCarouselRef':

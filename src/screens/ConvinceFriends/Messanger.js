@@ -65,14 +65,11 @@ const Messanger = (props) => {
 
       if (result.action === Share.sharedAction) {
         if (result.activityType) {
-          console.log("activityType", result.activityType)
           // shared with activity type of result.activityType
         } else {
-          console.log("shared")
           // shared
         }
       } else if (result.action === Share.dismissedAction) {
-        console.log("dismissed")
         // dismissed
       }
     } catch (error) {

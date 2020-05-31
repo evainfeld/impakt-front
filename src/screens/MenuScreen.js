@@ -52,7 +52,6 @@ const MenuScreen = ({ navigation }) => {
         }
       }).catch((res) => {
         // the response is thrown with the errors - shouldn't be like that
-        console.log("res catched", res)
         if (res.data.listEvent.items) {
           setEvents(res.data.listEvent.items)
         }
