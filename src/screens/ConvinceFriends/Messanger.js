@@ -91,7 +91,8 @@ const Messanger = (props) => {
           <View style={styles.flex1}>
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
               <View style={styles.inner}>
-                <HeaderRegular style={styles.header}>
+              <HeaderRegular style={styles.header}>
+                  Let's convince your friends who care about{"\n"}
                   {topic.name}
                 </HeaderRegular>
                 <TextInput
