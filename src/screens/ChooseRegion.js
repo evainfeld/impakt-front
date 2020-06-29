@@ -10,7 +10,7 @@ import { useStore } from 'helpers/store.js'
 import navigationOptions from 'helpers/navigationOptions.js'
 // components:
 import MainLayout from 'components/layouts/MainLayout.js'
-import { RegularButton, HeaderYellow } from 'components/shared/basic/index.js'
+import { RegularButton, HeaderYellow , HeaderRegular} from 'components/shared/basic/index.js'
 // constants:
 import colors from 'constants/colors'
 
@@ -62,6 +62,7 @@ const ChooseRegion = (
   return (
     <MainLayout>
       {locations && <View style={styles.container}>
+      <HeaderYellow>{"\n"}{"\n"}</HeaderYellow>
         <Picker
           selectedValue={selectedValue}
           style={Platform.OS === 'android' ? styles.picker : {}}
@@ -77,7 +78,9 @@ const ChooseRegion = (
           disabled={!selectedValue}
           style={styles.button}
         />
-        <HeaderYellow>We do not collect your data.</HeaderYellow>
+        <HeaderRegular>We do not collect your data.{"\n"}{"\n"}{"\n"} 
+        Your chosen region is the only information about you we are going to save, 
+        so we can make Impakt relevant to your needs.</HeaderRegular>
       </View>}
     </MainLayout>
   )

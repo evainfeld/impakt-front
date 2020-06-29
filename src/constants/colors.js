@@ -6,4 +6,5 @@ export default {
     white: "#FFFFFF",
     dimmed: '#101028b3',
     alarmRed: '#FF1B59',
+    black: '#000000',
 }

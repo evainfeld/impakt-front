@@ -41,8 +41,9 @@ const SetNickName = ({ setNickname }) => {
             content={'enter chat'}
             theme={'dark'}
           />
-          <HeaderYellow>IMPAKT does not save your nickname for safety reasons.</HeaderYellow>
-          <HeaderYellow>If someone confiscates your phone, we don't want them to learn what you did in the app.</HeaderYellow>
+          <HeaderRegular>IMPAKT does not save your nickname for safety reasons.</HeaderRegular>
+          <HeaderRegular>If someone confiscates your phone, we don't want them to learn what you did in the app.</HeaderRegular>
+          <HeaderRegular>It will ask you for a nickname every time you reopen the chat.</HeaderRegular>
           <View style={styles.flex1} />
         </View>
       </KeyboardAvoidingView>

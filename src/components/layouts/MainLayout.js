@@ -2,6 +2,7 @@ import React from 'react';
 import { SafeAreaView, StyleSheet } from 'react-native';
 import LinearGradient from 'components/shared/LinearGradient.js';
 
+
 const MainLayout = ({ children }) => (
   <SafeAreaView style={styles.container}>
     <LinearGradient>

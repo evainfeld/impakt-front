@@ -24,7 +24,7 @@ const categoryParams = {
 }
 
 const Item = ({ title, goToMessanger }) => (
-  <ButtonListItem action={goToMessanger} content={title} />
+  <ButtonListItem theme='dark' action={goToMessanger} content={title} />
 )
 
 const Topics = ({ navigation: { navigate } }) => {

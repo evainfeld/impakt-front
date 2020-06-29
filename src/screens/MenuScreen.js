@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { View, StyleSheet } from 'react-native'
+import { View, StyleSheet, Image } from 'react-native'
 import * as SecureStore from 'expo-secure-store'
 
 // api:
@@ -12,7 +12,7 @@ import { useStore } from 'helpers/store.js'
 
 // components:
 import MainLayout from 'components/layouts/MainLayout.js'
-import { ButtonListItem } from 'components/shared/basic/index.js'
+import { ButtonListItem, HeaderRegular } from 'components/shared/basic/index.js'
 
 const MenuScreen = ({ navigation }) => {
   const { navigate } = navigation
@@ -69,23 +69,35 @@ const MenuScreen = ({ navigation }) => {
 
   return (
     <MainLayout>
-      <View style={styles.container}>
+      <View style={styles.container1}>
         <ButtonListItem
+        theme='dark'
           action={() => navigate('GetInvolved')}
           content={'Get Involved'}
         />
         <ButtonListItem
+        theme='dark'
           action={() => navigate('ConvinceFriendsInitial')}
           content={'Convince Friends'}
         />
         <ButtonListItem
+        theme='dark'
           action={() => navigate('NewsEvents')}
           content={'News & Events'}
         />
         <ButtonListItem
+        theme='dark'
           action={() => navigate('LocalChat', { nickname: null })}
           content={'Local Chat'}
         />
+      </View>
+      <View style={{
+      justifyContent: 'center',
+      alignItems: 'center',
+      paddingTop: 50,}}>
+      <Image
+        source={require('assets/images/logo_name_s.png')}
+      />
       </View>
     </MainLayout>
   )
@@ -95,8 +107,8 @@ MenuScreen.navigationOptions = navigationOptions('', false)
 
 const styles = StyleSheet.create({
   button: {
-    marginTop: 10,
-    padding: 30,
+    marginTop: 0,
+    padding: 10,
   },
   container: {
     flex: 1,
