@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "healthy-truffles",
+    "name": "IMPAKT",
     "description": "No description",
     "slug": "snack-5618161f-1e7c-4cbe-9c76-946ca063167c",
     "privacy": "unlisted",
@@ -27,6 +27,10 @@
       "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#10105E"
+    },
+    "android": {
+      "package": "network.impakt.app",
+      "versionCode": 1
     }
   }
 }
