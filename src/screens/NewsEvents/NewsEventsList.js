@@ -57,7 +57,7 @@ const NewsEventsList = () => {
 
   return (
     <View style={styles.container}>
-      <HeaderRegular>news & events</HeaderRegular>
+      <HeaderRegular>aktualności</HeaderRegular>
       <FlatList
         data={events}
         renderItem={({ item, index }) => <ListItem event={item} index={index} />}
@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
   },
   containerLocation: {
     justifyContent: 'center',
-    backgroundColor: colors.brandLight,
+    backgroundColor: colors.verydarkred,
   },
   row: {
     flexDirection: 'row',

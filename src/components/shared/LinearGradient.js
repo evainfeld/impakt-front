@@ -9,7 +9,7 @@ const LinearGradientWrapper = ({
   // define own below props rendering the component or be happy with default values:
   start = { x: 1, y: 1 },
   end = { x: 1, y: 0 },
-  colorsArr = [colors.gradientDark,colors.black,colors.gradientDark, colors.brandDark],
+  colorsArr = [colors.gradientDark,colors.verydarkred,colors.gradientDark, colors.brandDark],
   style = styles.linearGradient
 }) => (
     <LinearGradient

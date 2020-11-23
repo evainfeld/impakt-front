@@ -50,7 +50,7 @@ const Form = ({nickname}) => {
       </TouchableWithoutFeedback>
       <ButtonListItem
         action={submit}
-        content={'send'}
+        content={'wyślij'}
         theme={'dark'}
       />
       {Platform.OS === "ios" && <View style={styles.keyboardHack} />}

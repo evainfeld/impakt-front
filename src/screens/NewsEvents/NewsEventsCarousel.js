@@ -44,8 +44,8 @@ const CarouselCard = ({ item, index }) => {
   
   return (
     <View style={{
-      backgroundColor: isComingEvent ? 'blue' : 'transparent',
-      borderColor: 'blue',
+      backgroundColor: isComingEvent ? 'verydarkred' : 'transparent',
+      borderColor: 'verydarkred',
       borderWidth: 1,
       flex: 1,
       padding: 10,
@@ -57,7 +57,7 @@ const CarouselCard = ({ item, index }) => {
 
       <HeaderRegular style={{ fontFamily: 'Exo', marginTop: 0, marginBottom: 5, fontSize: 16 }}>{item.title}</HeaderRegular>
       <RegularText style={{ fontFamily: 'Exo', marginTop: 0, marginBottom: 5, fontSize: 14 }}>{item.content}</RegularText>
-      <RegularText style={{ fontFamily: 'Exo', marginTop: 0, marginBottom: 5, fontSize: 12 }}>{item.region}</RegularText>
+      <RegularText style={{ fontFamily: 'Exo', marginTop: 0, marginBottom: 5, fontSize: 12, color: 'transparent' }}>{item.region}</RegularText>
       <RegularText style={{ fontFamily: 'Exo', marginTop: 0, marginBottom: 5, fontSize: 12 }}>{format(new Date(item.whenDate), 'MM/dd/yy (kk:mm)')}</RegularText>
     </View>
   )

@@ -3,4 +3,5 @@ export default {
   navHeight: 54,
   iOsSystemBarHeight: 20,
   mainPadding: 15,
+  organizationName: "ZA",
 }

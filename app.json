@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "IMPAKT",
-    "description": "No description",
+    "name": "LOT IMPAKT",
+    "description": "https://impakt.network",
     "slug": "snack-5618161f-1e7c-4cbe-9c76-946ca063167c",
     "privacy": "unlisted",
     "version": "1.0.0",
@@ -13,20 +13,15 @@
       "hideExponentText": false
     },
     "packagerOpts": {
-      "assetExts": [
-        "ttf",
-        "mp4",
-        "otf",
-        "xml"
-      ]
+
     },
     "ios": {
       "supportsTablet": true
     },
     "splash": {
       "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#10105E"
+      "resizeMode": "cover",
+      "backgroundColor": "#030318"
     },
     "android": {
       "package": "network.impakt.app",

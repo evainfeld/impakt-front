@@ -25,9 +25,12 @@ import { useStore } from 'helpers/store.js'
 import MainLayout from 'components/layouts/MainLayout.js'
 import { HeaderRegular, DarkButton, YellowButton } from 'components/shared/basic/index.js'
 
+// constants:
+import general from 'constants/general.js'
+
 const propagandaParams = {
   limit: 100,
-  org: "ZZ"
+  org: general.organizationName,
 }
 
 const Messanger = (props) => {
@@ -88,7 +91,7 @@ const Messanger = (props) => {
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
               <View style={styles.inner}>
               <HeaderRegular style={styles.header}>
-                  Let's convince your friends who care about{"\n"}
+                  Porozmawiajmy z Twoimi znajomymi, którzy:{"\n"}
                   {topic.name}
                 </HeaderRegular>
                 <TextInput
@@ -103,12 +106,12 @@ const Messanger = (props) => {
             {state.propagandas.length > 1 && (
               <DarkButton
                 action={changeDefaultMsg}
-                content='Pick another message'
+                content='Zaproponuj inną wiadomość'
               />
             )}
             <YellowButton
               action={onSubmit}
-              content='Send'
+              content='Wysyłam'
               disabled={!value}
             />
             <View style={styles.flex1} />

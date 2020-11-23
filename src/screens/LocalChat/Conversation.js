@@ -29,9 +29,9 @@ const Conversation = ({ style }) => {
   return (
     <View style={style}>
       <View style={styles.headerContainer}>
-        <CustomText style={styles.headerText}>There are </CustomText>
-        <CustomText style={{ ...styles.headerText, ...styles.headerCounter }}> 17 </CustomText>
-        <CustomText style={styles.headerText}> of us here</CustomText>
+        <CustomText style={styles.headerText}> Witaj!  </CustomText>
+        <CustomText style={{ ...styles.headerText, ...styles.headerCounter }}>    </CustomText>
+        <CustomText style={styles.headerText}> </CustomText>
       </View>
       <FlatList
         data={chatMessages}

@@ -6,7 +6,7 @@ const DarkButton = ({ children, action, content, disabled, style }) => (
   <CustomButton
     action={action}
     color={colors.white}
-    backgroundColor={colors.brandDark}
+    backgroundColor={colors.verydarkred}
     content={content}
     disabled={disabled}
     style={style}

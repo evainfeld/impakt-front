@@ -14,6 +14,9 @@ import { useStore } from 'helpers/store.js'
 import MainLayout from 'components/layouts/MainLayout.js'
 import { ButtonListItem, HeaderRegular } from 'components/shared/basic/index.js'
 
+//constants:
+import general from 'constants/general.js'
+
 const MenuScreen = ({ navigation }) => {
   const { navigate } = navigation
   const { dispatch, state: { region } } = useStore()
@@ -35,9 +38,7 @@ const MenuScreen = ({ navigation }) => {
   eventParams = region => {
     return {
       filter: {
-        region: {
-          beginsWith: region
-        }
+        region: {beginsWith: general.organizationName}
       },
       limit: 1000
     }
@@ -73,28 +74,28 @@ const MenuScreen = ({ navigation }) => {
         <ButtonListItem
         theme='dark'
           action={() => navigate('GetInvolved')}
-          content={'Get Involved'}
+          content={'Działaj'}
         />
         <ButtonListItem
         theme='dark'
           action={() => navigate('ConvinceFriendsInitial')}
-          content={'Convince Friends'}
+          content={'Przekonaj Znajomych'}
         />
         <ButtonListItem
         theme='dark'
           action={() => navigate('NewsEvents')}
-          content={'News & Events'}
+          content={'Wydarzenia'}
         />
         <ButtonListItem
         theme='dark'
           action={() => navigate('LocalChat', { nickname: null })}
-          content={'Local Chat'}
+          content={'Czat'}
         />
       </View>
       <View style={{
       justifyContent: 'center',
       alignItems: 'center',
-      paddingTop: 50,}}>
+      paddingTop: 10,}}>
       <Image
         source={require('assets/images/logo_name_s.png')}
       />

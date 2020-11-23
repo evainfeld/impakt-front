@@ -13,6 +13,7 @@ import MainLayout from 'components/layouts/MainLayout.js'
 import { RegularButton, HeaderYellow , HeaderRegular} from 'components/shared/basic/index.js'
 // constants:
 import colors from 'constants/colors'
+import general from 'constants/general.js'
 
 const ChooseRegion = (
   { navigation: { navigate, state: { params } } }
@@ -46,7 +47,7 @@ const ChooseRegion = (
 
   const locationParams = {
     // should be based on organization (TODO)
-    org: 'ZZ',
+    org: general.organizationName,
     limit: 1000,
     sortDirection: 'ASC'
   }

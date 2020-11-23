@@ -14,21 +14,21 @@ const GetInvolved = ({ navigation: { navigate } }) => {
         <ButtonListItem
           theme='dark'
           action={() => navigate('ContactCoordinator')}
-          content={'contact nearest coordinator'}
+          content={'skontaktuj się z przedstawicielem związku'}
         />
         <ButtonListItem
           theme='dark'
           action={() => navigate('NewsEvents')}
-          content={'next event in your area'}
+          content={'najbliższe wydarzenie blisko ciebie'}
         />
         <ButtonListItem
           theme='dark'
           action={() => navigate('LocalChat', { nickname: null })}
-          content={'make friends nearby on the local chat'}
+          content={'poznaj innych na czacie'}
         />
       </View>
       <View style={styles.container2}>
-        <HeaderRegular style={styles.info}>There {state.numberOfUsers > 1 ? 'are' : 'is'} at least {state.numberOfUsers} of us in:</HeaderRegular>
+        <HeaderRegular style={styles.info}> Jest nas coraz więcej w:</HeaderRegular>
         <HeaderRegular style={styles.infoBig}>{state.region.name}</HeaderRegular>
       </View>
     </MainLayout>

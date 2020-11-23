@@ -7,4 +7,5 @@ export default {
     dimmed: '#101028b3',
     alarmRed: '#FF1B59',
     black: '#000000',
+    verydarkred: '#101028',
 }

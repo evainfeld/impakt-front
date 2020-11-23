@@ -9,21 +9,21 @@ const Initial = ({ navigation: { navigate } }) => (
   <MainLayout>
     <View style={styles.container}>
       <RegularText>
-        No one can talk to your friends better than YOU.
+        Nikt nie potrafi rozmawiać z Twoimi znajomymi lepiej od CIEBIE.
       </RegularText>
       <RegularText>
-        You know what's important to them.
+        To Ty wiesz co jest dla nich ważne.
       </RegularText>
       <RegularText style={{ marginBottom: 40 }}>
-        Let's convince them to support our common cause TOGETHER
+        Razem możemy ich przekonać do wsparcia praw pracowniczych.
       </RegularText>
       <RegularButton
         action={() => navigate('ConvinceFriendsTopics')}
-        content="Let's do it"
+        content="DALEJ"
         style={styles.button}
       />
-      <RegularText>We do not collect your data.</RegularText>
-      <RegularText>What you do here is between you and your friends.</RegularText>
+      <RegularText>Nie zbieramy Twoich danych.</RegularText>
+      <RegularText>To, co tu robisz zostaje pomiędzy Twoimi znajomymi a Tobą.</RegularText>
     </View>
   </MainLayout>
 );

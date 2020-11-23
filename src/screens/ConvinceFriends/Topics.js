@@ -13,6 +13,9 @@ import { useStore } from 'helpers/store.js'
 import MainLayout from 'components/layouts/MainLayout.js'
 import { ButtonListItem, LargeText } from 'components/shared/basic/index.js'
 
+// constants:
+import general from 'constants/general.js'
+
 const categoryParams = {
   sortDirection: "DESC",
   limit: 1000,
@@ -20,8 +23,10 @@ const categoryParams = {
   // region: {
   //   beginWith: "ZZ::PL"
   // },
-  org: "ZZ"
+  org: general.organizationName,
+  filter: {region: {beginsWith: general.organizationName}}
 }
+
 
 const Item = ({ title, goToMessanger }) => (
   <ButtonListItem theme='dark' action={goToMessanger} content={title} />
@@ -45,7 +50,7 @@ const Topics = ({ navigation: { navigate } }) => {
   return (
     <MainLayout>
       <LargeText style={styles.header}>
-        Let's convince your friends, who value:
+        Porozmawiajmy z Twoimi znajomymi, którzy:
     </LargeText>
       <FlatList style={styles.listContainer}
         data={state.topics}

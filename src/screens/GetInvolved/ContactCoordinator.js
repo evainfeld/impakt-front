@@ -101,15 +101,15 @@ const ContactCoordinator = ({ navigation: { navigate } }) => {
           <View style={styles.flex1}>
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
               <View style={styles.inner}>
-                <RegularText>The coordinator in your area is:</RegularText>
+                <RegularText>W Twojej okolicy pomoże Ci</RegularText>
                 <RegularText> {coordinatorName}</RegularText>
                 <RegularText>
-                  How would you like them to contact you?
+                  Jak najlepiej się z Tobą skontaktować?
                 </RegularText>
                 <ErrorMessage>{errorMessage}</ErrorMessage>
                 <TextInput
                   style={styles.textInput}
-                  placeholder='emanil or phone number'
+                  placeholder='email albo telefon'
                   onChangeText={val => onChangeText(val, 'contact')}
                   value={userContact}
                 />
@@ -121,13 +121,13 @@ const ContactCoordinator = ({ navigation: { navigate } }) => {
                   onChangeText={val => onChangeText(val, 'message')}
                   value={optionalMessage}
                   editable
-                  placeholder={`Optional message for ${coordinatorName}`}
+                  placeholder={`wiadomość (opcjonalnie)`}
                 />
               </View>
             </TouchableWithoutFeedback>
             <RegularButton
               action={onSumbit}
-              content='Submit'
+              content='WYŚLIJ'
               disabled={!userContact}
               style={styles.button}
             />
@@ -139,6 +139,7 @@ const ContactCoordinator = ({ navigation: { navigate } }) => {
     </MainLayout>
   )
 }
+
 
 ContactCoordinator.navigationOptions = navigationOptions()
 

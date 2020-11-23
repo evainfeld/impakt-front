@@ -6,8 +6,8 @@ const ButtonListItem = ({ children, action, content, disabled, style, theme }) =
   <CustomButton
     action={action}
     color={colors.white}
-    backgroundColor={(theme === 'dark' ? colors.brandDark : colors.brandLight)}
-    borderColor={colors.brandLight}
+    backgroundColor={(theme === 'dark' ? colors.brandDark : colors.verydarkred)}
+    borderColor={colors.verydarkred}
     borderWidth={1}
     content={content}
     disabled={disabled}

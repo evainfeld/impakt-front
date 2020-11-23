@@ -26,7 +26,7 @@ const SetNickName = ({ setNickname }) => {
           <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
             <View style={styles.inner}>
               <HeaderRegular style={styles.header}>
-                Chose your nickname:
+                Wybierz pseudonim:
                 </HeaderRegular>
               <TextInput
                 style={styles.textInput}
@@ -38,12 +38,12 @@ const SetNickName = ({ setNickname }) => {
           </TouchableWithoutFeedback>
           <ButtonListItem
             action={() => setNickname(value)}
-            content={'enter chat'}
+            content={'wejdź na czat'}
             theme={'dark'}
           />
-          <HeaderRegular>IMPAKT does not save your nickname for safety reasons.</HeaderRegular>
-          <HeaderRegular>If someone confiscates your phone, we don't want them to learn what you did in the app.</HeaderRegular>
-          <HeaderRegular>It will ask you for a nickname every time you reopen the chat.</HeaderRegular>
+          <HeaderRegular>IMPAKT nie zapamietuje Twojego pseudonimu.</HeaderRegular>
+          <HeaderRegular>Jeżeli ktoś uzyska dostęp po Twojego telefonu, nie dowie się co w nim robiłeś/aś.</HeaderRegular>
+          <HeaderRegular>Dlatego IMPAKT prosi o wpisanie pseudonimu za każdym razem, kiedy otworzysz aplikację.</HeaderRegular>
           <View style={styles.flex1} />
         </View>
       </KeyboardAvoidingView>
