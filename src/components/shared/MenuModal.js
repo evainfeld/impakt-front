@@ -7,7 +7,7 @@ import {
   TouchableWithoutFeedback,
   View
 } from 'react-native';
-import { HeaderYellow } from 'components/shared/basic/index.js'
+import { HeaderRegular } from 'components/shared/basic/index.js'
 import colors from 'constants/colors.js'
 import constants from 'constants/general.js'
 import { useStore } from 'helpers/store.js'
@@ -23,7 +23,7 @@ const MenuItem = ({ title, screenName, params = {} }) => {
   return <TouchableHighlight
     onPress={() => { goToScreen(screenName, dispatch, params) }}
   >
-    <HeaderYellow style={styles.menuItem}>{title}</HeaderYellow>
+    <HeaderRegular style={styles.menuItem}>{title}</HeaderRegular>
   </TouchableHighlight>
 }
 

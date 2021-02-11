@@ -1,5 +1,5 @@
 export default {
-    brandLight: '#0032E8',
+    brandLight: '#479dff',
     brandDark: '#10105E',
     gradientDark: '#101028',
     yellow: "#FFED00",

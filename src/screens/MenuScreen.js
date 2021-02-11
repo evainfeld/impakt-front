@@ -35,8 +35,8 @@ const MenuScreen = ({ navigation }) => {
   eventParams = region => {
     return {
       filter: {
-        region: {
-          beginsWith: region
+        region: { beginsWith: "ZZ::PL"
+         // beginsWith: region
         }
       },
       limit: 1000
@@ -94,7 +94,7 @@ const MenuScreen = ({ navigation }) => {
       <View style={{
       justifyContent: 'center',
       alignItems: 'center',
-      paddingTop: 50,}}>
+      paddingTop: 10,}}>
       <Image
         source={require('assets/images/logo_name_s.png')}
       />

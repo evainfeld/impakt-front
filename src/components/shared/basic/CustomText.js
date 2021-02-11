@@ -6,7 +6,7 @@ const CustomText = ({
   children,
   color = colors.white,
   fontSize = 20,
-  fontFamily = "Exo100",
+  fontFamily = "Exo200",
   textAlign = 'center',
   marginTop = 10,
   marginBottom = 10,

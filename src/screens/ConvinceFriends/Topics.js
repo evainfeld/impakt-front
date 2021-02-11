@@ -18,9 +18,10 @@ const categoryParams = {
   limit: 1000,
   // this is needed but does not work:
   // region: {
-  //   beginWith: "ZZ::PL"
+  //   beginWith: "ZA::PL"
   // },
-  org: "ZZ"
+  org: "ZZ",
+  region: "ZZ::PL",
 }
 
 const Item = ({ title, goToMessanger }) => (

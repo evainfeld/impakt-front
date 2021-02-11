@@ -10,7 +10,7 @@ const DarkButton = ({ children, action, content, disabled, style }) => (
     content={content}
     disabled={disabled}
     style={style}
-    textButtonStyle={{ fontFamily: "Exo200" }}
+    textButtonStyle={{ fontFamily: "Exo300" }}
   >
     {children}
   </CustomButton>

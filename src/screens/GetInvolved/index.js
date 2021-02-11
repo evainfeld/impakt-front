@@ -35,7 +35,8 @@ const GetInvolved = ({ navigation: { navigate } }) => {
   )
 }
 
-GetInvolved.navigationOptions = navigationOptions()
+
+GetInvolved.navigationOptions = navigationOptions('')
 
 const styles = StyleSheet.create({
   container1: {

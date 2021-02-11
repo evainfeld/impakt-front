@@ -38,9 +38,9 @@ const navigationOptions = (title, isMenuVisible = true) => {
     },
     headerTintColor: colors.white,
     headerTitleStyle: {
-      fontFamily: 'Exo100',
+      fontFamily: 'Exo200',
       textTransform: 'uppercase',
-      fontWeight: '100',
+      fontWeight: '200',
     },
     headerRight: <MenuIcon isMenuVisible={isMenuVisible} />,
     // headerLeft: <WeMightWantOurCustomBackArrow /> // this might be helpful: https://github.com/react-navigation/react-navigation/issues/779
