@@ -23,7 +23,7 @@ import {
   ErrorMessage,
   HeaderYellow,
   RegularButton,
-  RegularText
+  HeaderRegular
 } from 'components/shared/basic'
 
 const ContactCoordinator = ({ navigation: { navigate } }) => {
@@ -101,15 +101,13 @@ const ContactCoordinator = ({ navigation: { navigate } }) => {
           <View style={styles.flex1}>
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
               <View style={styles.inner}>
-                <RegularText>The coordinator in your area is:</RegularText>
-                <RegularText> {coordinatorName}</RegularText>
-                <RegularText>
+                <HeaderRegular>The coordinator in your area is {"\n"}  {coordinatorName}{"\n"} {"\n"}
                   How would you like them to contact you?
-                </RegularText>
+                </HeaderRegular>
                 <ErrorMessage>{errorMessage}</ErrorMessage>
                 <TextInput
                   style={styles.textInput}
-                  placeholder='emanil or phone number'
+                  placeholder='your e-mail address or phone number'
                   onChangeText={val => onChangeText(val, 'contact')}
                   value={userContact}
                 />

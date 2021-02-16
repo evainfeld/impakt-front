@@ -23,7 +23,7 @@ import { useStore } from 'helpers/store.js'
 
 // components:
 import MainLayout from 'components/layouts/MainLayout.js'
-import { HeaderRegular, DarkButton, YellowButton } from 'components/shared/basic/index.js'
+import { HeaderRegular, DarkButton, YellowButton , SmallerText} from 'components/shared/basic/index.js'
 
 const propagandaParams = {
   limit: 100,
@@ -88,7 +88,7 @@ const Messanger = (props) => {
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
               <View style={styles.inner}>
               <HeaderRegular style={styles.header}>
-                  Let's convince your friends who care about{"\n"}
+                  Let's convince your friends who care about{"\n"} 
                   {topic.name}
                 </HeaderRegular>
                 <TextInput
@@ -111,6 +111,9 @@ const Messanger = (props) => {
               content='Send'
               disabled={!value}
             />
+            <SmallerText style={styles.header}>
+                  You can edit the sample messages or write an entirely new one.
+                </SmallerText>
             <View style={styles.flex1} />
           </View>
         </KeyboardAvoidingView>

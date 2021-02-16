@@ -66,6 +66,7 @@ export default class App extends Component {
       // regular text font:
       Exo100: require('./assets/fonts/exo-2-100.ttf'),
       Exo200: require('./assets/fonts/exo-2-200.ttf'),
+      Exo300: require('./assets/fonts/exo-2-300.ttf'),
       Roboto: require('./assets/fonts/Roboto.ttf'),
       Roboto_medium: require('./assets/fonts/Roboto_medium.ttf'),
       // logo font:

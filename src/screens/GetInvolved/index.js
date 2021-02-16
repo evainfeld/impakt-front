@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, View } from 'react-native'
+import { StyleSheet, View , Image} from 'react-native'
 import navigationOptions from 'helpers/navigationOptions.js'
 import { useStore } from 'helpers/store.js'
 import { ButtonListItem, HeaderRegular } from 'components/shared/basic/index.js'
@@ -11,10 +11,13 @@ const GetInvolved = ({ navigation: { navigate } }) => {
   return (
     <MainLayout>
       <View style={styles.container1}>
+      <HeaderRegular style={styles.info}>There {state.numberOfUsers > 1 ? 'are' : 'is'} at least {state.numberOfUsers} of us in:</HeaderRegular>
+      <HeaderRegular style={styles.info}>{state.region.name}{"\n"}</HeaderRegular>
+
         <ButtonListItem
           theme='dark'
           action={() => navigate('ContactCoordinator')}
-          content={'contact nearest coordinator'}
+          content={'contact the nearest coordinator'}
         />
         <ButtonListItem
           theme='dark'
@@ -27,10 +30,15 @@ const GetInvolved = ({ navigation: { navigate } }) => {
           content={'make friends nearby on the local chat'}
         />
       </View>
-      <View style={styles.container2}>
-        <HeaderRegular style={styles.info}>There {state.numberOfUsers > 1 ? 'are' : 'is'} at least {state.numberOfUsers} of us in:</HeaderRegular>
-        <HeaderRegular style={styles.infoBig}>{state.region.name}</HeaderRegular>
+      <View style={{
+      justifyContent: 'center',
+      alignItems: 'center',
+      paddingBottom: 30,}}>
+      <Image
+        source={require('assets/images/logo_name_s.png')}
+      />
       </View>
+
     </MainLayout>
   )
 }

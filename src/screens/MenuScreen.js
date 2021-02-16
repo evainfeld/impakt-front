@@ -94,7 +94,7 @@ const MenuScreen = ({ navigation }) => {
       <View style={{
       justifyContent: 'center',
       alignItems: 'center',
-      paddingTop: 10,}}>
+      paddingTop: 20,}}>
       <Image
         source={require('assets/images/logo_name_s.png')}
       />

@@ -3,6 +3,7 @@
 import CustomText from './CustomText.js'
 import ErrorMessage from './ErrorMessage.js'
 import HeaderRegular from './HeaderRegular.js'
+import SmallerText from './SmallerText.js'
 import HeaderYellow from './HeaderYellow.js'
 import LargeText from './LargeText.js'
 import RegularText from './RegularText.js'
@@ -21,6 +22,7 @@ export {
   HeaderYellow,
   LargeText,
   RegularText,
+  SmallerText,
   //buttons:
   ButtonListItem,
   CustomButton,

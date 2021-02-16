@@ -99,7 +99,9 @@ const styles = StyleSheet.create({
   picker: {
     height: 50,
     width: '100%',
-    backgroundColor: colors.white
+    backgroundColor: colors.white,
+    borderColor: colors.white,
+    color: colors.white
   },
 })
 
