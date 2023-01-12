@@ -1,3 +1,9 @@
+# This is the mobile app Impakt, meant for onboarding and mobilizing people into grassroots movements. 
+
+It's built in React Native, with Expo enabled. You can find out about our goals at https://impakt.network
+
+
+
 # Anias Notes
 * mockup: https://xd.adobe.com/view/0f20f974-3071-4c4b-719c-cfd1ce61bf29-7911/screen/5f213569-1e15-482a-aa29-53077c40c487/intro-2
 * Material design libraries for react-native:
