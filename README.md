@@ -14,6 +14,7 @@ Here are some features already present in this version:
 - Domain fronting. However, this is only acheved by using a large hosting service. This should be overhauled in the future.
 - Pseudonymous local chat
 
+The app logs nothing but your choice of region you're in. We believe that social movements are most powerful when ephemeral.
 ## 2. How to run it.
 
 Use Expo to code and run it in real time, and to compile an apk.
