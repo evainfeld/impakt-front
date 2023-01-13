@@ -4,7 +4,15 @@ It's built in React Native, with Expo enabled. You can find out about our goals 
 
 ## 1. The overview
 
+Impakt is an app framework that is a one-stop shop for any grassroots cause. It will help your supporters find each other, organize, convince their friends to get involved and stay safe from overreach and violence.
 
+Here are some features already present in this version:
+
+- Toolkit for efficiently reaching out to your friends about issues that are important to them.
+- Easily contacting the nearest "coordinator" of the movement
+- Local events calendar
+- Domain fronting. However, this is only acheved by using a large hosting service. This should be overhauled in the future.
+- Pseudonymous local chat
 
 ## 2. How to run it.
 
